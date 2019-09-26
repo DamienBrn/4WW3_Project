@@ -1,3 +1,8 @@
+body{
+    overflow-x: hidden
+}
+
+
 .safe_view{
     margin-top: 80px;
 }

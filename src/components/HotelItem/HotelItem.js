@@ -16,12 +16,6 @@ export default class HotelItem extends React.Component {
     )
   }
 
-
-  componentDidMount(){
-    console.log(this.props)
-  }
-
-
   constructor(props){
     super(props)
   }

@@ -5,9 +5,8 @@
 
 
 .landing_image{
-    background-image: url("../../../assets/images/landing_image.jpg");
+    background-image: url("../../../assets/videos/hotel_pres.mp4");
     height: 100%;
-    width: 100%;
     background-size: cover;
     background-position: center;
 }

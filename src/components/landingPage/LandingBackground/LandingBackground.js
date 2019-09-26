@@ -1,12 +1,18 @@
 import React from 'react'
 import './LandingBackground.css'
+import hotel_pres_path from '../../../assets/videos/hotel_pres.mp4'
+
 
 export default class LandingBackground extends React.Component{
 
     render(){
         return (
             <div className="landing_background_container">
-                <div className="landing_image"/>
+
+                <video autoPlay loop muted className="landing_image">
+                    <source src={hotel_pres_path} type="video/mp4"/>
+                </video>
+                
                 <div className="overlay"/>
                 <section id="scroll_icon">
                     <a href="#"><span></span></a>

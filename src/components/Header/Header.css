@@ -17,6 +17,7 @@
     height: 80px;
     z-index: 5;
     transition: all ease 0.4s;
+    border-bottom: solid 1px #686868;
 }
 
 .header_container div{
