@@ -1,16 +1,17 @@
 import React from 'react'
-import SearchForm from '../../components/SearchForm/SearchForm'
-import './Search.css'
+import './HotelDetail.css'
 import '../../utils/styles/styles.css'
 
 
-export default class Search extends React.PureComponent{
+export default class HotelDetail extends React.PureComponent{
 
     render(){
         return(
+
             <div className="safe_view full_view">
-                <SearchForm/>
+                This is the HotelDetail screen
             </div>
+
         )
     }
 

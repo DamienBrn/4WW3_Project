@@ -2,6 +2,9 @@ body{
     overflow-x: hidden
 }
 
+.text_align_center{
+    text-align: center;
+}
 
 .safe_view{
     margin-top: 80px;

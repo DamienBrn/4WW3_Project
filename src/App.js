@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import LandingPage from './screens/LandingPage/LandingPage'
 import Search from './screens/Search/Search'
 import About from './screens/About/About'
+import HotelDetails from './screens/HotelDetails/HotelDetail'
 
 import Error from './components/Error/Error'
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" component={LandingPage} exact/>
               <Route path="/search" component={Search}/>
               <Route path="/about" component={About}/>
+              <Route path="/hotel_details_sample" component={HotelDetails}/>
               <Route component={Error}/>
             </Switch>
           

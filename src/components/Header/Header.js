@@ -13,6 +13,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import SignUpIcon from '@material-ui/icons/PersonAdd';
 
 
 class Header extends React.Component {
@@ -40,14 +43,15 @@ class Header extends React.Component {
 
 
                 <Dialog open={this.state.signUpFormState} onClose={()=>this.handleClose()} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Sign up</DialogTitle>
+                    <DialogTitle id="form-dialog-title" className="text_align_center">Sign up</DialogTitle>
 
                     <IconButton aria-label="close" className="close_button" onClick={()=>this.handleClose()}>
                         <CloseIcon />
                     </IconButton>
 
                     <DialogContent>
-                        <DialogContentText>
+
+                        <DialogContentText className="text_align_center">
                             Sign up now, it's FREE !
                         </DialogContentText>
 
@@ -71,12 +75,32 @@ class Header extends React.Component {
                             />
                         </div>
 
+
+                        
+                        <Button variant="contained" color="primary" className="signup_button">
+                            Sign up
+                            <SignUpIcon className="search_icon">send</SignUpIcon>
+                        </Button>
+
+
+                        <DialogContentText className="text_align_center">
+                            Already have an account ? Login
+                        </DialogContentText>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={true}
+                                onChange={()=>console.log('checkChange')}
+                                value="checkedB"
+                                color="primary"
+                            />
+                            }
+                            label="Yes, please inform me about travel deals, tips and new features on TripAdvisor. I can opt out at any time."
+                        />
+
                     </DialogContent>
-                    <DialogActions>
-                    <Button onClick={()=>this.handleClose()} color="primary">
-                        Sign up
-                    </Button>
-                    </DialogActions>
+  
                 </Dialog>
 
             </div>

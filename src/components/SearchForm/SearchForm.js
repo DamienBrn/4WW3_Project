@@ -23,9 +23,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
-
 import Box from '@material-ui/core/Box';
 
+import { NavLink } from 'react-router-dom'
 
 
 import DateFnsUtils from '@date-io/date-fns';
@@ -160,8 +160,8 @@ export default class SearchForm extends React.Component{
                       <Typography component="legend">Stars</Typography>
                       <Rating
                         name="simple-controlled"
-                        /*value={value}
-                        onChange={(event, newValue) => {
+                        value={2}
+                        /*onChange={(event, newValue) => {
                           setValue(newValue);
                         }}*/
                       />
@@ -175,9 +175,8 @@ export default class SearchForm extends React.Component{
                     
                     <Button variant="contained" color="primary" className="spaced_element">
                       Search
-                    {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-                    <SearchIcon className="search_icon">send</SearchIcon>
-                  </Button>
+                      <SearchIcon className="search_icon">send</SearchIcon>
+                    </Button>
 
                   </form>
                   
@@ -255,7 +254,7 @@ export default class SearchForm extends React.Component{
                     </div>
                     
                     <div>
-                          <HotelItem src={hotel_01}/>
+                          <NavLink to="/hotel_details_sample" ><HotelItem src={hotel_01}/></NavLink>
                           <HotelItem src={hotel_02}/>
                           <HotelItem src={hotel_03}/>
                           <HotelItem/>

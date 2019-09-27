@@ -77,7 +77,10 @@
 }
 
 .signup_inputs_container{
-    display: inline-grid;
+    display: grid;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -86,4 +89,13 @@
     height: fit-content;
     position: absolute !important;
     right: 0;
+}
+
+
+.signup_button{
+    position: relative;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px !important;
 }
