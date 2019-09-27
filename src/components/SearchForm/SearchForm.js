@@ -1,6 +1,11 @@
 import React from 'react'
 import './SearchForm.css'
 import HotelItem from '../HotelItem/HotelItem'
+import hotel_01 from '../../assets/images/hotel_01.jpg'
+import hotel_02 from '../../assets/images/hotel_02.jpg'
+import hotel_03 from '../../assets/images/hotel_03.jpg'
+
+
 import TextField from '@material-ui/core/TextField';
 import {
   MuiPickersUtilsProvider,
@@ -16,6 +21,12 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+
+import Box from '@material-ui/core/Box';
+
+
 
 import DateFnsUtils from '@date-io/date-fns';
 
@@ -145,6 +156,17 @@ export default class SearchForm extends React.Component{
                       </FormControl>
                     </div>
 
+                    <Box component="fieldset" mb={3} borderColor="transparent" className="spaced_element">
+                      <Typography component="legend">Stars</Typography>
+                      <Rating
+                        name="simple-controlled"
+                        /*value={value}
+                        onChange={(event, newValue) => {
+                          setValue(newValue);
+                        }}*/
+                      />
+                    </Box>
+
                     <AirbnbSlider className="spaced_element"
                       ThumbComponent={AirbnbThumbComponent}
                       getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
@@ -157,41 +179,85 @@ export default class SearchForm extends React.Component{
                     <SearchIcon className="search_icon">send</SearchIcon>
                   </Button>
 
-
                   </form>
                   
                   <div className="results_section">
 
                     <div className="horizontal_bar_options">
 
-                      <FormControl variant="outlined" className="">
-                        <InputLabel  htmlFor="outlined-age-simple">
-                          Adults
-                        </InputLabel>
-                        <Select
-                          value={"test"}
-                        /* onChange={}
-                          labelWidth={}*/
-                          inputProps={{
-                            name: 'age',
-                            id: 'outlined-age-simple',
-                          }}
-                        >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>1 adult</MenuItem>
-                          <MenuItem value={20}>2 adults</MenuItem>
-                          <MenuItem value={30}>3 adults</MenuItem>
-                        </Select>
-                      </FormControl>
+
+                    <FormControl>
+                      <InputLabel htmlFor="price_order_helper">Price</InputLabel>
+                      <Select
+                        value={'low'}
+                       // onChange={handleChange}
+                        displayEmpty
+                        name="age"
+                        //className={classes.selectEmpty}
+                        inputProps={{
+                          name: 'age',
+                          id: 'price_order_helper',
+                        }}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={'low'}>Low first</MenuItem>
+                        <MenuItem value={'first'}>High first</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl>
+                      <InputLabel htmlFor="rating_helper">Rating</InputLabel>
+                      <Select
+                        value={30}
+                       // onChange={handleChange}
+                        displayEmpty
+                        name="rating"
+                        //className={classes.selectEmpty}
+                        inputProps={{
+                          name: 'rating',
+                          id: 'rating_helper',
+                        }}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl>
+                      <InputLabel htmlFor="stars_helper">Stars</InputLabel>
+                      <Select
+                        value={30}
+                       // onChange={handleChange}
+                        displayEmpty
+                        name="stars"
+                        //className={classes.selectEmpty}
+                        inputProps={{
+                          name: 'stars',
+                          id: 'stars_helper',
+                        }}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+
 
                     </div>
                     
                     <div>
-                          <HotelItem/>
-                          <HotelItem/>
-                          <HotelItem/>
+                          <HotelItem src={hotel_01}/>
+                          <HotelItem src={hotel_02}/>
+                          <HotelItem src={hotel_03}/>
                           <HotelItem/>
                           <HotelItem/>
                     </div>

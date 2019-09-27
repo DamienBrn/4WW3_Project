@@ -68,11 +68,22 @@
     font-size: 20px;
 }
 
-
 .center_vertically{
     margin: 0;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.signup_inputs_container{
+    display: inline-grid;
+}
+
+
+.close_button{
+    width: fit-content;
+    height: fit-content;
+    position: absolute !important;
+    right: 0;
 }

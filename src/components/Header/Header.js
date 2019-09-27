@@ -4,6 +4,15 @@ import './Header.css'
 import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
 import { ReactComponent as Cancel } from '../../assets/icons/cancel.svg';
 import { NavLink } from 'react-router-dom'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 class Header extends React.Component {
@@ -19,7 +28,7 @@ class Header extends React.Component {
                             <li><NavLink to="/about" >About</NavLink></li>
                             <li><NavLink to="/contact" >Contact</NavLink></li>
                             <li>Login</li>
-                            <li>Sign up</li>
+                            <li onClick={()=>this.handleClickOpen()}>Sign up</li>
                         </ul>
                     </div>
                 </header>
@@ -28,7 +37,50 @@ class Header extends React.Component {
                     <NavLink to="/" >Berno Hotels</NavLink>
                 </div>
                 {this.chooseIconToDisplay()}
+
+
+                <Dialog open={this.state.signUpFormState} onClose={()=>this.handleClose()} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Sign up</DialogTitle>
+
+                    <IconButton aria-label="close" className="close_button" onClick={()=>this.handleClose()}>
+                        <CloseIcon />
+                    </IconButton>
+
+                    <DialogContent>
+                        <DialogContentText>
+                            Sign up now, it's FREE !
+                        </DialogContentText>
+
+                        <div className="signup_inputs_container">
+                            <TextField
+                                id="outlined-name"
+                                label="@Email address"
+                                className="spaced_element"
+                                margin="normal"
+                                variant="outlined"
+                                type="email"
+                            />
+
+                            <TextField
+                                id="outlined-name"
+                                label="Create a password"
+                                className="spaced_element"
+                                margin="normal"
+                                variant="outlined"
+                                type="password"
+                            />
+                        </div>
+
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={()=>this.handleClose()} color="primary">
+                        Sign up
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+
             </div>
+            
         )
     }
 
@@ -36,10 +88,24 @@ class Header extends React.Component {
     constructor(props){
         super(props)
         this.state ={
-            headerState : "hidden"
+            headerState : "hidden",
+            signUpFormOpen : false
         }
     }
 
+
+    handleClickOpen(){
+        this.setState({
+            signUpFormState : true
+        })
+    }
+
+    handleClose(){
+        console.log('CLOSE')
+        this.setState({
+            signUpFormState : false 
+        })
+    }
 
     chooseIconToDisplay(){
         if(this.state.headerState === 'visible'){

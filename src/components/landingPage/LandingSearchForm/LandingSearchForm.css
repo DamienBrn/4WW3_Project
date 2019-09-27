@@ -1,6 +1,6 @@
 
 .landing_form{
-    position: absolute;
+     position: absolute;
     right: 0;
     margin-right: 6%;
     bottom: 20%;
@@ -11,7 +11,18 @@
     height: 350px;
     width: 400px;
     border: solid 3px;
-    border-color: rgba(0, 0, 0, 0.9);
+    border-color: rgba(0, 0, 0, 0.9); 
+/*
+    display: inline-grid;
+    border: solid 1px #878787;
+    padding: 20px;
+    height: fit-content;
+    width: 350px;
+    left: 0;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);
+    -moz-box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);
+    box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);*/
 }
 
 
