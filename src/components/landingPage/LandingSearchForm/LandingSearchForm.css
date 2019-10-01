@@ -1,18 +1,23 @@
 
 .landing_form{
-    position: absolute;
-    display: flex;
-    right: 0;
-    margin-right: 6%;
-    bottom: 20%;
-    background-color: rgb(255, 255, 255);
-    width: 500px;
-    padding: 20px;
-    height: fit-content;
-    border: solid 1px #878787;  
+  position: absolute;
+  display: flex;
 
-    border-radius: 5px;
-    box-shadow: 2px 3px 5px 0px rgba(47,47,47,1);
+  padding-left: 5px;
+  padding-right: 5px;
+
+  bottom: -5%;
+  background-color: rgb(255, 255, 255);
+  height: 70px;
+  width: 50%;
+
+  border: solid 1px #878787;
+  border-radius: 70px;
+  box-shadow: 2px 3px 5px 0px rgba(47,47,47,1);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -40,10 +45,28 @@
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  right: 5%;
+  right: 1%;
 }
 
 
 .small_search_input{
-  width: 85%;
+  position: absolute;
+    width: 85%;
+    top: 0;
+    bottom: 0;
+    margin-bottom: auto !important;
+    margin-top: auto !important;
+    margin-left: 35px !important;
+}
+
+
+.location_icon{
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    color: #3f51b5;
+    
 }

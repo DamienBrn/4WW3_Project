@@ -1,9 +1,53 @@
+.footer h3{
+    text-decoration: underline;
+}
+
 .footer_container{
     position: relative;
     bottom: 0;
-    background-color: #000000;
     width: 100%;
-    height: 350px;
+    height: 300px;
+    background-color: #15255d;
+    color: #ffffffab;
+}
+
+.footer_content{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    top: 15%;
+}
+
+.footer_content div{
+    border-left: solid 2px #ffffffab;
+    height: 190px;
+}
+
+.site_map ul{
+    display: inline-block;
+}
+
+
+.list_contact li, .site_map_list li{
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.list_style_none{
+    list-style: none;
+}
+
+.social_media_list li{
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.social_media_list li:hover{
     color: #ffffff;
 }
 
+.medium_scale{
+    font-size: 40px !important;
+}

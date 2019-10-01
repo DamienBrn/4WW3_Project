@@ -5,7 +5,7 @@ import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
 import { ReactComponent as Cancel } from '../../assets/icons/cancel.svg';
 import { NavLink, withRouter } from 'react-router-dom'
 import SignupForm from '../SignupForm/SignupForm'
-
+import { Button } from '@material-ui/core'
 
 
 class Header extends React.Component {
@@ -22,15 +22,21 @@ class Header extends React.Component {
                             <li><NavLink to="/about" >About</NavLink></li>
                             <li><NavLink to="/contact" >Contact</NavLink></li>
                             <li>Login</li>
-                            <li onClick={()=>this.handleClickOpen()}>Sign up</li>
+                            <li onClick={()=>this.handleClickOpen()}>
+                                <Button variant="contained" color="primary">
+                                    Sign up
+                                </Button>
+                            </li>
                         </ul>
                     </div>
                 </header>
                 
-                <div id="web_title" className="website_title">
-                    <NavLink to="/" >Berno Hotels</NavLink>
+                <div className="fixed_title_icon">
+                    <div id="web_title" className="website_title">
+                        <NavLink to="/" >Berno Hotels</NavLink>
+                    </div>
+                    {this.chooseIconToDisplay()}
                 </div>
-                {this.chooseIconToDisplay()}
 
                 <SignupForm open={this.state.signUpFormOpen} handleClose={this.handleClose}/>
 
@@ -57,7 +63,6 @@ class Header extends React.Component {
         this.setState({
             signUpFormOpen : false 
         })
-        console.log(this.props)
     }
 
     componentDidMount(){
@@ -89,6 +94,7 @@ class Header extends React.Component {
             }
         }
     }
+
 
     showHeader(){
         let header = document.getElementById("main_header")

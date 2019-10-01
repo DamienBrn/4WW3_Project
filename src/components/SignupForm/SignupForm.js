@@ -23,7 +23,7 @@ export default class SignupForm extends React.Component{
     render(){
         return (
 
-                <Dialog open={this.props.open} onClose={this.props.handleClose} aria-labelledby="form-dialog-title">
+                <Dialog open={this.props.open} onClose={this.props.handleClose} onBackdropClick={this.props.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title" className="text_align_center">Sign up</DialogTitle>
 
                     <IconButton aria-label="close" className="close_button" onClick={this.props.handleClose}>
