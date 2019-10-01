@@ -1,0 +1,35 @@
+.horizontal_bar_options{
+    border: solid 1px black;
+    height: 50px;
+    margin: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px;
+
+    border: solid 1px #878787;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);
+    -moz-box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);
+    box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);
+}
+
+.horizontal_bar_options div{
+    width: 200px;
+}
+
+
+.result_thumbnail{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.fit_div_width{
+    width: fit-content;
+}
+
+.click_me{
+    
+}

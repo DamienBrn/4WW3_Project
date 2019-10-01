@@ -1,34 +1,31 @@
 import React from 'react'
 import './SearchForm.css'
-import HotelItem from '../HotelItem/HotelItem'
-import hotel_01 from '../../assets/images/hotel_01.jpg'
-import hotel_02 from '../../assets/images/hotel_02.jpg'
-import hotel_03 from '../../assets/images/hotel_03.jpg'
 
+import { TextField, 
+  Box, 
+  Button, 
+  Select, 
+  InputLabel, 
+  FormControl, 
+  Typography, 
+  MenuItem, 
+  Slider
+} from '@material-ui/core'
 
-import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import Slider from '@material-ui/core/Slider';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import SearchIcon from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
-import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-
-import { NavLink } from 'react-router-dom'
-
 
 import DateFnsUtils from '@date-io/date-fns';
+
+import SearchIcon from '@material-ui/icons/Search';
+
+import Rating from '@material-ui/lab/Rating';
+
+
 
 
 export default class SearchForm extends React.Component{
@@ -37,14 +34,9 @@ export default class SearchForm extends React.Component{
 
             <div className="search_form_container">
 
-
               <div className="search_layout_container">
 
-
-
-                <div className="search_flex_display">
-
-                  <form className="search_form">
+                <form className="search_form">
 
                   <TextField
                     id="outlined-name"
@@ -175,95 +167,10 @@ export default class SearchForm extends React.Component{
                     
                     <Button variant="contained" color="primary" className="spaced_element">
                       Search
-                      <SearchIcon className="search_icon">send</SearchIcon>
+                      <SearchIcon className="search_icon"/>
                     </Button>
 
                   </form>
-                  
-                  <div className="results_section">
-
-                    <div className="horizontal_bar_options">
-
-
-                    <FormControl>
-                      <InputLabel htmlFor="price_order_helper">Price</InputLabel>
-                      <Select
-                        value={'low'}
-                       // onChange={handleChange}
-                        displayEmpty
-                        name="age"
-                        //className={classes.selectEmpty}
-                        inputProps={{
-                          name: 'age',
-                          id: 'price_order_helper',
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={'low'}>Low first</MenuItem>
-                        <MenuItem value={'first'}>High first</MenuItem>
-                      </Select>
-                    </FormControl>
-
-                    <FormControl>
-                      <InputLabel htmlFor="rating_helper">Rating</InputLabel>
-                      <Select
-                        value={30}
-                       // onChange={handleChange}
-                        displayEmpty
-                        name="rating"
-                        //className={classes.selectEmpty}
-                        inputProps={{
-                          name: 'rating',
-                          id: 'rating_helper',
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl>
-
-                    <FormControl>
-                      <InputLabel htmlFor="stars_helper">Stars</InputLabel>
-                      <Select
-                        value={30}
-                       // onChange={handleChange}
-                        displayEmpty
-                        name="stars"
-                        //className={classes.selectEmpty}
-                        inputProps={{
-                          name: 'stars',
-                          id: 'stars_helper',
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl>
-
-
-                    </div>
-                    
-                    <div>
-                          <NavLink to="/hotel_details_sample" ><HotelItem src={hotel_01}/></NavLink>
-                          <HotelItem src={hotel_02}/>
-                          <HotelItem src={hotel_03}/>
-                          <HotelItem/>
-                          <HotelItem/>
-                    </div>
-
-                  </div>
-
-                </div>
 
               </div>
 

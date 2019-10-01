@@ -1,0 +1,18 @@
+.full_view{
+    position: relative;
+    min-height: 100vh;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+
+.hotel_detail_img_container{
+    height: 350px;
+    width: 600px;
+}
+
+.hotel_detail_img{
+    height: 100%;
+    width: 100%;
+}
+

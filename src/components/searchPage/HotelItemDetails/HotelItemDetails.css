@@ -1,0 +1,17 @@
+.top_section_hotel_details{
+    display: flex;
+}
+
+
+.bottom_section_hotel_details{
+    width: fit-content;
+    margin-top: 50px;
+}
+
+.heart_icon{
+    color: #ff6d75;
+}
+
+.heart_icon:hover{
+    color: #ff3d47,
+}

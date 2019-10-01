@@ -1,14 +1,12 @@
 .landing_background_container{
   height: 100%;
-  widows: 100%;
+  width: 100%;
 }
 
 
-.landing_image{
-    background-image: url("../../../assets/videos/hotel_pres.mp4");
+.landing_video{
+    object-fit: initial;
     height: 100%;
-    background-size: cover;
-    background-position: center;
 }
 
 .overlay{

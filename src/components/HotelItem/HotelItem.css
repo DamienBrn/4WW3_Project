@@ -1,17 +1,35 @@
 .container{
+    position: relative;
     display: inline-block;
     text-align: center;
     margin: 20px;
+    cursor: pointer;
+    height: 300px;
+    width: 400px;
 }
 
 
 .hotel_thumbnail{
     position: relative;
-    height: 300px;
-    width: 400px;
+    height: 100%;
+    width: 100%;
 }
 
 .hotel_thumbnail img{
     height: 100%;
     width: 100%;
+}
+
+
+.thumbnail_overlay{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+}
+
+.thumbnail_overlay:hover{
+    opacity: 0;
 }

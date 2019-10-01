@@ -16,9 +16,9 @@ export default class FeaturedCountries extends React.Component{
                 <h2>Thousands of hotels around the world</h2>
 
                 <div style={{marginTop:50}}>
-                    <HotelItem src={toronto}/>
-                    <HotelItem src={paris} />
-                    <HotelItem src={boston} />
+                    <HotelItem src={toronto} hotelName="Toronto"/>
+                    <HotelItem src={paris} hotelName="Paris"/>
+                    <HotelItem src={boston} hotelName="Boston"/>
                 </div>
 
             </div>

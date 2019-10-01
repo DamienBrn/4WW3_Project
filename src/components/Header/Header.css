@@ -1,14 +1,3 @@
-@font-face {
-    font-family: playfair;
-    src: url(../../fonts/PlayfairDisplay-Regular.otf);
-  }
-
-
-*{
-    font-family: playfair;
-}
-
-
 .header_container{
     position: absolute;
     top: -80px;
@@ -76,26 +65,3 @@
     transform: translateY(-50%);
 }
 
-.signup_inputs_container{
-    display: grid;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-.close_button{
-    width: fit-content;
-    height: fit-content;
-    position: absolute !important;
-    right: 0;
-}
-
-
-.signup_button{
-    position: relative;
-    width: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 20px !important;
-}

@@ -1,3 +1,13 @@
+@font-face {
+    font-family: playfair;
+    src: url(../../fonts/PlayfairDisplay-Regular.otf);
+  }
+
+*{
+    font-family: playfair;
+}
+
+
 body{
     overflow-x: hidden
 }

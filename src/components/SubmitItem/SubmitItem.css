@@ -1,0 +1,23 @@
+.dropzone_files{
+    color: red;
+}
+
+
+
+
+.arrow_submit_button{
+    width: 300px;
+}
+
+.arrow_submit_icon{
+    position: absolute;
+    right: 5%;
+}
+
+
+.section_container{
+    border: solid 1px #6c6c6c;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 5px;
+}

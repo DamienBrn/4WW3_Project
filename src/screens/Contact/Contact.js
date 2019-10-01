@@ -1,14 +1,14 @@
 import React from 'react'
-import './About.css'
+import './Contact.css'
 
 
-export default class About extends React.PureComponent{
+export default class Contact extends React.PureComponent{
 
     render(){
         return(
 
             <div className="safe_view full_view">
-                This is the About screen
+                This is the Contact screen
             </div>
 
         )

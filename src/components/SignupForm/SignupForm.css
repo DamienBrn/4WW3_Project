@@ -1,0 +1,31 @@
+.submit_form_container{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+}
+
+
+.signup_inputs_container{
+    display: grid;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.close_button{
+    width: fit-content;
+    height: fit-content;
+    position: absolute !important;
+    right: 0;
+}
+
+
+.signup_button{
+    position: relative;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px !important;
+}

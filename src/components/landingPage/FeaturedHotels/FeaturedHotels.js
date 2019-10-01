@@ -15,9 +15,9 @@ export default class FeaturedHotels extends React.Component{
                 <h2 className="">Featured Hotels</h2>
 
                 <div style={{marginTop:50}}>
-                    <HotelItem src={hotel_01}/>
-                    <HotelItem src={hotel_02}/>
-                    <HotelItem src={hotel_03}/>
+                    <HotelItem src={hotel_01} hotelName="hotel_01"/>
+                    <HotelItem src={hotel_02} hotelName="hotel_02"/>
+                    <HotelItem src={hotel_03} hotelName="hotel_03"/>
                 </div>
             </div>
         )

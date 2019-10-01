@@ -9,7 +9,7 @@ export default class LandingBackground extends React.Component{
         return (
             <div className="landing_background_container">
 
-                <video autoPlay loop muted className="landing_image">
+                <video autoPlay loop muted className="landing_video" alt="video presenting our hotels">
                     <source src={hotel_pres_path} type="video/mp4"/>
                 </video>
                 

@@ -2,15 +2,18 @@ import React from 'react';
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+
 import LandingPage from './screens/LandingPage/LandingPage'
 import Search from './screens/Search/Search'
 import About from './screens/About/About'
-import HotelDetails from './screens/HotelDetails/HotelDetail'
+import HotelDetails from './screens/HotelDetails/HotelDetails'
+import Submit from './screens/Submit/Submit'
+import Contact from './screens/Contact/Contact'
 
-import Error from './components/Error/Error'
+import Error from './screens/Error/Error'
 import './App.css';
+import './utils/styles/styles.css'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-
 
 
 function App() {
@@ -27,6 +30,7 @@ function App() {
             <Switch>
               <Route path="/" component={LandingPage} exact/>
               <Route path="/search" component={Search}/>
+              <Route path="/submit" component={Submit}/>
               <Route path="/about" component={About}/>
               <Route path="/hotel_details_sample" component={HotelDetails}/>
               <Route component={Error}/>
