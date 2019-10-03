@@ -1,9 +1,11 @@
-.dropzone_files{
-    color: red;
+.submit_form fieldset{
+    border-radius: 5px;
 }
 
 
-
+.dropzone_files{
+    color: red;
+}
 
 .arrow_submit_button{
     width: 300px;
@@ -16,7 +18,7 @@
 
 
 .section_container{
-    border: solid 1px #6c6c6c;
+    /*border: solid 1px #6c6c6c;*/
     width: fit-content;
     padding: 20px;
     border-radius: 5px;

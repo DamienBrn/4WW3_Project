@@ -8,7 +8,6 @@ import hotel_lisbonne from '../../../assets/images/hotel_lisbonne.jpg'
 
 export default class PopularHotels extends React.Component{
 
-
     render(){
         return (
           
@@ -16,9 +15,9 @@ export default class PopularHotels extends React.Component{
                 <h2>Popular Hotels</h2>
 
                 <div style={{marginTop:50}}>
-                    <HotelItem src={hotel_paris} hotelName="Paris"/>
-                    <HotelItem src={hotel_geneva} hotelName="Geneva"/>
-                    <HotelItem src={hotel_lisbonne} hotelName="Lisbonne"/>
+                    <HotelItem src={hotel_paris} hotelName="Lafayette" countryCode="fr" cityName="Paris"/>
+                    <HotelItem src={hotel_geneva} hotelName="Four Seasons" countryCode="ch" cityName="Geneva"/>
+                    <HotelItem src={hotel_lisbonne} hotelName="PortoBay" countryCode="pt" cityName="Lisbon"/>
                 </div>
 
             </div>

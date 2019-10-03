@@ -1,5 +1,8 @@
 import React from 'react';
 import './HotelItem.css'
+import FlagIcon from '../FlagIcon/FlagIcon'
+
+
 
 export default class HotelItem extends React.Component {
 
@@ -7,9 +10,25 @@ export default class HotelItem extends React.Component {
     return (
       <div className="container">
          
-        <div className="hotel_thumbnail">
+        <div className="thumbnail">
+
           <img src={this.props.src} alt={this.props.hotelName}/>
-          <div className=""/>
+
+          <div className="hotel_thumbnail_header">
+            <div>
+                {this.props.hotelName}
+            </div>
+            <div>
+                <FlagIcon code={this.props.countryCode}/>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="hotel_thumbnail_footer">
+
+          {this.props.cityName}
+
         </div>
 
         <div className="thumbnail_overlay"></div>
