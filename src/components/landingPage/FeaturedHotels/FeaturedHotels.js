@@ -14,10 +14,16 @@ export default class FeaturedHotels extends React.Component{
             <div className="featured_hotels">
                 <h2 className="">Featured Hotels</h2>
 
-                <div style={{marginTop:50}}>
-                    <HotelItem src={hotel_01} hotelName="L'Hotel" countryCode="it" cityName="Rome"/>
-                    <HotelItem src={hotel_02} hotelName="Holliday Inn" countryCode="es" cityName="Barcelona"/>
-                    <HotelItem src={hotel_03} hotelName="10x Hotel" countryCode="us" cityName="Houston"/>
+                <div className="featured_hotels_thumbnails" style={{marginTop:50}}>
+                    <div>
+                        <HotelItem src={hotel_01} hotelName="L'Hotel" countryCode="it" cityName="Rome"/>
+                    </div>
+                    <div>
+                        <HotelItem src={hotel_02} hotelName="Holliday Inn" countryCode="es" cityName="Barcelona"/>
+                    </div>
+                    <div>
+                        <HotelItem src={hotel_03} hotelName="10x Hotel" countryCode="us" cityName="Houston"/>
+                    </div>
                 </div>
             </div>
         )

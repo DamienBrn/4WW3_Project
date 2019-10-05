@@ -14,10 +14,16 @@ export default class PopularHotels extends React.Component{
             <div className="popular_hotel">
                 <h2>Popular Hotels</h2>
 
-                <div style={{marginTop:50}}>
+                <div className="popular_hotels_thumbnails" style={{marginTop:50}}>
+                    <div>
                     <HotelItem src={hotel_paris} hotelName="Lafayette" countryCode="fr" cityName="Paris"/>
+                    </div>
+                    <div>
                     <HotelItem src={hotel_geneva} hotelName="Four Seasons" countryCode="ch" cityName="Geneva"/>
+                    </div>
+                    <div>
                     <HotelItem src={hotel_lisbonne} hotelName="PortoBay" countryCode="pt" cityName="Lisbon"/>
+                    </div>
                 </div>
 
             </div>

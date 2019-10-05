@@ -1,19 +1,17 @@
 import React from 'react'
 import './HotelItemDetails.css'
+import map_src from '../../../assets/images/map_screen.JPG'
+import UserReviewItem from '../../UserReviewItem/UserReviewItem'
+import Services from '../../Services/Services'
 import hotel_01 from '../../../assets/images/hotel_01.jpg'
-import { TextField, 
+import {
     Box, 
     Button, 
-    Select, 
-    InputLabel, 
-    FormControl, 
-    Typography, 
-    MenuItem, 
-    Slider
   } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import Rating from '@material-ui/lab/Rating';
 
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import BookIcon from '@material-ui/icons/Book';
+import Rating from '@material-ui/lab/Rating';
 
 
 export default class HotelItemDetails extends React.Component{
@@ -28,57 +26,96 @@ export default class HotelItemDetails extends React.Component{
                         <img src={hotel_01} className="hotel_detail_img"/>
                     </div>
                     
-                    <div>
+                    <div className="details_top_right_hand_side">
+
+                        <div className="details_header_title_stars">
+                            <h1>L'Hotel</h1>
+
+                            <div>
+                                <Box component="fieldset" mb={3} borderColor="transparent" className="details_stars">
+                                    <Rating
+                                        name="stars_readonly"
+                                        value={4}
+                                        readOnly 
+                                    />
+                                </Box>
+                            </div>
+                        </div>
 
 
+                        <h3> Piazza del Colosseo, 1, 00184 Roma RM, Italy</h3>
+                        
 
-                        <h1>Name of the hotel</h1>
-                        <h3>Address / Country</h3>
-                        <h3>Number of stars</h3>
-                        <h3>Average Rating</h3>
-                        <h3>Like button</h3>
+
+                        <h3>Average Rating : <span>4.7</span></h3>
+
+                        <div className="display_flex">
+                            <h3>Rate this hotel : </h3>
+                            <Box component="fieldset" mb={3} borderColor="transparent">
+                                <Rating
+                                name="customized-color"
+                                value={2}
+                                precision={0.5}
+                                icon={<FavoriteIcon fontSize="inherit" className="heart_icon"/>}
+                                />
+                            </Box>
+                        </div>
+
+                    <Button variant="contained" color="primary" className="book_room_button">
+                      Book a room
+                      <BookIcon className="book_room_icon"/>
+                    </Button>
+                        
 
                     </div>
                 </div>
 
                 <div className="bottom_section_hotel_details">
 
+                    <div className="display_flex">
+                        <div className="map_hotel_details">
 
-                    <div>
+                            <img src={map_src} />
 
-                        Map
+                        </div>
 
+                        <div className="hotel_description">
+                            <h3>Hotel Description</h3>
+                            <div>
+                                <p>
+                                    Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada.
+
+                                    Nulla porttitor accumsan tincidunt. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
+
+                                    Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
+
+                                    Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
 
 
-                    <div>
-
-                        Hotel Description
-
+                    <div className="services">
+                        <h2>Services (sample)</h2>
+                        <Services/>
                     </div>
 
-                    <div>
-
-                        Services / Facilities
-
-                    </div>
-
-                    <div>
-
-                        User reviews
+                    <div className="user_reviews">
+                        <h2>User Reviews (sample)</h2>
+                        <UserReviewItem/>
+                        <UserReviewItem/>
+                        <UserReviewItem/>
+                        <UserReviewItem/>
 
                     </div>
-
-                    <Box component="fieldset" mb={3} borderColor="transparent">
-                        <Typography component="legend">Rate this hotel</Typography>
-                        <Rating
-                        name="customized-color"
-                        value={2}
-                        //getLabelText='test'
-                        precision={0.5}
-                        icon={<FavoriteIcon fontSize="inherit" className="heart_icon"/>}
-                        />
-                     </Box>
 
                 </div>
 

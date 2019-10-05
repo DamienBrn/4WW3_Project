@@ -6,6 +6,7 @@ import { ReactComponent as Cancel } from '../../assets/icons/cancel.svg';
 import { NavLink, withRouter } from 'react-router-dom'
 import SignupForm from '../SignupForm/SignupForm'
 import { Button } from '@material-ui/core'
+import { hidden } from 'ansi-colors';
 
 
 class Header extends React.Component {
@@ -31,7 +32,7 @@ class Header extends React.Component {
                     </div>
                 </header>
                 
-                <div className="fixed_title_icon">
+                <div id="fixed_title_icon" className="fixed_title_icon">
                     <div id="web_title" className="website_title">
                         <NavLink to="/" >Berno Hotels</NavLink>
                     </div>
@@ -49,7 +50,8 @@ class Header extends React.Component {
         super(props)
         this.state = {
             headerState : "hidden",
-            signUpFormOpen : false
+            signUpFormOpen : false,
+            iconToDisplay : {}
         }
     }
 
@@ -75,14 +77,65 @@ class Header extends React.Component {
         this.setState({
             headerState : "visible"
         })
+
+        window.addEventListener("resize", ()=>{this.updateHeader(); });
+
+        let vm = this
+
+        let resizeTimer;
+
+        window.addEventListener('resize', function(e) {
+
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+
+            vm.chooseIconToDisplay()
+                    
+        }, 250);
+        })
+    }
+    /*-------------------TO CLEAN--------------------*/ 
+
+
+    componentDidUpdate(){
+
+        this.updateHeaderColorsOnResize()
     }
 
 
+    updateHeaderColorsOnResize(){
+        if(this.state.headerState === 'hidden' && this.props.location.pathname.length === 1){
+            let websiteTitle = document.getElementById("web_title")
+            let menuIcon = document.getElementById("menu_icon")
 
-    /*-------------------TO CLEAN--------------------*/ 
+            websiteTitle.setAttribute('style', 'color : #ffffff !important')
+            menuIcon.setAttribute('style', 'fill : #ffffff !important')
+        }else{
+            let iconsTitleContainer = document.getElementById('fixed_title_icon')
+
+            iconsTitleContainer.setAttribute('style', 'border-bottom: solid 1px #686868;')
+        }
+        
+    }
+
+
+    updateHeader(){
+        setTimeout(()=>{
+            let header = document.getElementById("main_header")
+            let headerHeight = header.clientHeight
+            
+            if(headerHeight > 80 && this.state.headerState !== 'visible'){
+                header.setAttribute('style', 'transition: all ease 0s; top : -' + headerHeight +'px;' )
+            }
+        }, 200)
+    }
 
     chooseIconToDisplay(){
-        if(this.props.location.pathname === '/'){
+
+        
+        let windowWidth = window.innerWidth
+
+        if(this.props.location.pathname.length === 1 || windowWidth <= 930){
             if(this.state.headerState === 'visible'){
                 return (
                     <Cancel id="menu_icon" className="menu_icon" onClick={()=>this.hideOrShowHeader()}/>
@@ -92,23 +145,11 @@ class Header extends React.Component {
                     <MenuIcon id="menu_icon" className="menu_icon" onClick={()=>this.hideOrShowHeader()}/>
                 )
             }
-        }
-    }
-
-
-    showHeader(){
-        let header = document.getElementById("main_header")
-        let websiteTitle = document.getElementById("web_title")
-        let menuIcon = document.getElementById("menu_icon")
-        
-        if(this.state.headerState === 'hidden'){
-            header.setAttribute('style', 'transform : translateY(80px)')
-            websiteTitle.setAttribute('style', 'color : #000000')
-            menuIcon.setAttribute('style', 'fill : #000000')
-
-            this.setState({
-                headerState : "visible"
-            })
+        }else if(windowWidth > 930){
+            console.log('testestse')
+            return(
+                <div></div>
+            )
         }
     }
 
@@ -116,9 +157,10 @@ class Header extends React.Component {
         let header = document.getElementById("main_header")
         let websiteTitle = document.getElementById("web_title")
         let menuIcon = document.getElementById("menu_icon")
-        
+        let headerHeight = header.clientHeight
+
         if(this.state.headerState === 'hidden'){
-            header.setAttribute('style', 'transform : translateY(80px)')
+            header.setAttribute('style', 'transform : translateY(' + 80 + 'px)')
             websiteTitle.setAttribute('style', 'color : #000000')
             menuIcon.setAttribute('style', 'fill : #000000')
 
@@ -126,17 +168,21 @@ class Header extends React.Component {
                 headerState : "visible"
             })
         }else{
-            header.setAttribute('style', 'transform : translateY(-80px)')
-            websiteTitle.setAttribute('style', 'color : #ffffff')
-            menuIcon.setAttribute('style', 'fill : #ffffff')
+            header.setAttribute('style', 'transform : translateY(-' + headerHeight + 'px)')
 
+            if(this.props.location.pathname.length === 1){
+                websiteTitle.setAttribute('style', 'color : #ffffff')
+                menuIcon.setAttribute('style', 'fill : #ffffff')
+            }
             this.setState({
                 headerState : "hidden"
             })
         }
-
-
     }
+
+
+
+
 
 }
  

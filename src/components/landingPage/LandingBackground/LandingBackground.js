@@ -15,7 +15,7 @@ export default class LandingBackground extends React.Component{
                 
                 <div className="overlay"/>
                 <section id="scroll_icon">
-                    <a href="#"><span></span></a>
+                    <a href="#landing_form"><span></span></a>
                     <div id="scroll_text">
                         Scroll
                     </div>
@@ -38,8 +38,21 @@ export default class LandingBackground extends React.Component{
     }
 
 
-    constructor(props){
-        super(props)
+    componentDidMount(){
+        this.addListenerForSmoothScroll()
     }
 
+
+
+    addListenerForSmoothScroll(){
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+        
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
 }

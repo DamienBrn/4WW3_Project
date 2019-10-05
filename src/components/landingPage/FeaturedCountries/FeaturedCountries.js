@@ -15,10 +15,16 @@ export default class FeaturedCountries extends React.Component{
             <div className="featured_countries">
                 <h2>Thousands of hotels around the world</h2>
 
-                <div style={{marginTop:50}}>
-                    <CountryItem src={toronto} countryCode="ca" cityName="Toronto" nbProperties={3}/>
-                    <CountryItem src={paris} countryCode="fr" cityName="Paris" nbProperties={5}/>
-                    <CountryItem src={boston} countryCode="us" cityName="Boston" nbProperties={4}/>
+                <div className="featured_countries_thumbnails" style={{marginTop:50}}>
+                    <div>
+                        <CountryItem src={toronto} countryCode="ca" cityName="Toronto" nbProperties={3}/>
+                    </div>
+                    <div>
+                        <CountryItem src={paris} countryCode="fr" cityName="Paris" nbProperties={5}/>
+                    </div>
+                    <div>
+                        <CountryItem src={boston} countryCode="us" cityName="Boston" nbProperties={4}/>
+                    </div>
                 </div>
 
             </div>

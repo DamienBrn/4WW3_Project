@@ -10,7 +10,7 @@ export default class LandingSearchForm extends React.Component{
     render(){
         return (
             <div>
-                <form className="landing_form">
+                <form id="landing_form" className="landing_form">
 
                     <LocationIcon className="location_icon" style={{ fontSize: 30 }}/>
 

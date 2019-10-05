@@ -94,13 +94,13 @@ export default class Results extends React.Component{
                 
                 <div className="result_thumbnail">
                     <div className="fit_div_width click_me" onClick={()=>this.props.showDetails()}>
-                        <HotelItem src={hotel_01} tempText='CLICK ME' hotelName="hotel_01"/>
+                        <HotelItem src={hotel_01} hotelName="L'Hotel" countryCode="it" cityName="Rome" tempText='CLICK ME'/>
                     </div>
                     <div className="fit_div_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem src={hotel_02} tempText='CLICK ME' hotelName="hotel_02"/>
+                        <HotelItem src={hotel_02} hotelName="Holliday Inn" countryCode="es" cityName="Barcelona" tempText='CLICK ME'/>
                     </div>
                     <div className="fit_div_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem src={hotel_03} tempText='CLICK ME' hotelName="hotel_03"/>
+                        <HotelItem src={hotel_03} hotelName="10x Hotel" countryCode="us" cityName="Houston" tempText='CLICK ME'/>
                     </div>
                     <div className="fit_div_width" onClick={()=>this.props.showDetails()}>
                         <HotelItem hotelName="hotel_sample"/>
