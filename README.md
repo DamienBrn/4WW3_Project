@@ -22,12 +22,17 @@ Don't worry, you'll have the most beautiful website you've ever seen at the end 
 
 I did comment a lot of things because of the amount of content I have, and one of the TAs told me it was ok.
 Also, some constraints in the assessment criterias on Avenue were not good at all for UX purposes so I didn't follow them.
+Don't forget to click on "CLICK ME" or the thumbnails in the searchpage to access the single item page sample.
+
+
 
 Framework : ReactJS
 I decided to use ReactJS because I previously developed mobile applications using React Native and I fell in love with this framework because it's fast and easy to manage.
 I am working with different librairies that you can find in package.json. These are mostly used for design, such as @material-ui and @flag-icon. I am using these because they allow me to create beautiful inputs and components in a short amount of time, and I can access resources that would have taken me hours to do myself.
 
 To start the files on your own computer from github, you need to install nodeJs, clone the project and follow the instructions below (written automatically by React when creating a new web app).
+
+
 
 
 ----------------------------------------------------------------------------------------------
