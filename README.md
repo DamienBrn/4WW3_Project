@@ -18,8 +18,10 @@ The responsive on the search and single item page will be painful to do so I gue
 Don't worry, you'll have the most beautiful website you've ever seen at the end of this project :)
 
 
-PS : I did comment a lot of things because of the amount of content I have, and one of the TAs told me it was ok.
+**PS : **
 
+I did comment a lot of things because of the amount of content I have, and one of the TAs told me it was ok.
+Also, some constraints in the assessment criterias on Avenue were not good at all for UX purposes so I didn't follow them.
 
 Framework : ReactJS
 I decided to use ReactJS because I previously developed mobile applications using React Native and I fell in love with this framework because it's fast and easy to manage.
