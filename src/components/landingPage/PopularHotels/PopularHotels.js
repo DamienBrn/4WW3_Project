@@ -1,6 +1,7 @@
 import React from 'react'
 import HotelItem from '../../HotelItem/HotelItem'
 import './PopularHotels.css'
+
 import hotel_paris from '../../../assets/images/hotel_paris.jpg'
 import hotel_geneva from '../../../assets/images/hotel_geneva.jpg'
 import hotel_lisbonne from '../../../assets/images/hotel_lisbonne.jpg'
@@ -29,10 +30,4 @@ export default class PopularHotels extends React.Component{
             </div>
         )
     }
-
-
-    constructor(props){
-        super(props)
-    }
-
 }

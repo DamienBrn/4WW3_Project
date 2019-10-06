@@ -14,4 +14,8 @@ export default class About extends React.PureComponent{
         )
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0)
+    }
+
 }

@@ -21,10 +21,4 @@ export default class MapItem extends React.Component{
             </div>
         )
     }
-
-
-    constructor(props){
-        super(props)
-    }
-
 }

@@ -20,7 +20,6 @@ export default class HotelItemDetails extends React.Component{
 
         return(
             <div>
-
                 <div className="top_section_hotel_details">
                     <div className="hotel_detail_img_container">
                         <img src={hotel_01} className="hotel_detail_img"/>
@@ -34,7 +33,7 @@ export default class HotelItemDetails extends React.Component{
                             <div>
                                 <Box component="fieldset" mb={3} borderColor="transparent" className="details_stars">
                                     <Rating
-                                        name="stars_readonly"
+                                        name="details_stars"
                                         value={4}
                                         readOnly 
                                     />
@@ -42,14 +41,14 @@ export default class HotelItemDetails extends React.Component{
                             </div>
                         </div>
 
-
                         <h3> Piazza del Colosseo, 1, 00184 Roma RM, Italy</h3>
-                        
 
+                        <div className="average_rating_container">
+                            <h3>Average Rating : </h3>
+                            <div id="average_rating">4.7</div>
+                        </div>
 
-                        <h3>Average Rating : <span>4.7</span></h3>
-
-                        <div className="display_flex">
+                        <div className="display_flex_row">
                             <h3>Rate this hotel : </h3>
                             <Box component="fieldset" mb={3} borderColor="transparent">
                                 <Rating
@@ -61,18 +60,17 @@ export default class HotelItemDetails extends React.Component{
                             </Box>
                         </div>
 
-                    <Button variant="contained" color="primary" className="book_room_button">
-                      Book a room
-                      <BookIcon className="book_room_icon"/>
-                    </Button>
-                        
+                        <Button variant="contained" color="primary" className="book_room_button">
+                            Book a room
+                            <BookIcon className="book_room_icon"/>
+                        </Button>
 
                     </div>
                 </div>
 
                 <div className="bottom_section_hotel_details">
 
-                    <div className="display_flex">
+                    <div className="display_flex_row">
                         <div className="map_hotel_details">
 
                             <img src={map_src} />
@@ -110,6 +108,7 @@ export default class HotelItemDetails extends React.Component{
 
                     <div className="user_reviews">
                         <h2>User Reviews (sample)</h2>
+                        
                         <UserReviewItem/>
                         <UserReviewItem/>
                         <UserReviewItem/>

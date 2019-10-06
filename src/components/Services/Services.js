@@ -17,7 +17,7 @@ import {
 export default class Services extends React.Component{
     render(){
         return(
-            <div className="services_sample">
+            <div className="services_container">
                 <div>
                     <AirportShuttleIcon className="services_icon_size"/>
                     <h3>Airport shuttle</h3>
@@ -52,10 +52,6 @@ export default class Services extends React.Component{
                     <RestaurantIcon className="services_icon_size"/>
                     <h3>Restaurant</h3>
                 </div>
-                
-                
-                
-                
                 
             </div>
         )

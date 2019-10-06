@@ -7,19 +7,19 @@
 }
 
 
-.featured_hotels, .featured_countries, .near_location_hotels, .popular_hotel{
+.featured_hotels, .featured_cities, .near_location_hotels, .popular_hotel{
     position: relative;
     height: fit-content;
     width: 100vw;
 }
 
 
-.featured_hotels, .featured_countries, .popular_hotel{
+.featured_hotels, .featured_cities, .popular_hotel{
     margin-bottom: 60px;
 }
 
 
-.featured_hotels_thumbnails, .featured_countries_thumbnails, .popular_hotels_thumbnails{
+.featured_hotels_thumbnails, .featured_cities_thumbnails, .popular_hotels_thumbnails{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

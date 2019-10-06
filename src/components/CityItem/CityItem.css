@@ -1,5 +1,5 @@
 
-.country_thumbnail_header{
+.city_thumbnail_header{
     position: absolute;
     top: 0;
     display: flex;
@@ -13,7 +13,7 @@
 }
 
 
-.number_of_properties_container{
+.city_thumbnail_footer{
     position: absolute;
     width: 100%;
     bottom: 0;

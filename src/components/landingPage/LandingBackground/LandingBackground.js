@@ -1,7 +1,7 @@
 import React from 'react'
 import './LandingBackground.css'
-import hotel_pres_path from '../../../assets/videos/hotel_pres.mp4'
-
+import hotel_video_path from '../../../assets/videos/hotel_pres.mp4'
+import StarIcon from '@material-ui/icons/Star';
 
 export default class LandingBackground extends React.Component{
 
@@ -10,10 +10,11 @@ export default class LandingBackground extends React.Component{
             <div className="landing_background_container">
 
                 <video autoPlay loop muted className="landing_video" alt="video presenting our hotels">
-                    <source src={hotel_pres_path} type="video/mp4"/>
+                    <source src={hotel_video_path} type="video/mp4"/>
                 </video>
                 
                 <div className="overlay"/>
+
                 <section id="scroll_icon">
                     <a href="#landing_form"><span></span></a>
                     <div id="scroll_text">
@@ -28,23 +29,19 @@ export default class LandingBackground extends React.Component{
 
                         <div className="star_container">
                             <div className="star_border"></div>
-                            <i className="fa fa-star fa-xs star_icon"></i>
+                            <StarIcon className="star_icon"/>
                         </div>
                     </div>
-
-
             </div>
         )
     }
 
 
     componentDidMount(){
-        this.addListenerForSmoothScroll()
+        this.initListenerForSmoothScroll()
     }
 
-
-
-    addListenerForSmoothScroll(){
+    initListenerForSmoothScroll(){
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

@@ -3,13 +3,14 @@ import HotelItemDetails from '../../components/searchPage/HotelItemDetails/Hotel
 import './HotelDetails.css'
 
 
-
 export default class HotelDetails extends React.PureComponent{
 
     render(){
         return(
             <div>
-                <head>
+                {/* ADDITIONAL HEAD FOR METADATA AND MICRODATA */}
+
+                <head> 
                     <meta name="og:latitude" content="37.416343"/>
                     <meta name="og:longitude" content="-122.153013"/>
 
@@ -25,10 +26,7 @@ export default class HotelDetails extends React.PureComponent{
                         <span itemprop="author" itemscope itemtype="https://berno-hotels.com/review">
                             <span itemprop="name">Jeff Bezos</span>
                         </span>
-
                 </head>
-
-
 
                 <div className="safe_view full_view">
                     <HotelItemDetails/>
@@ -36,5 +34,4 @@ export default class HotelDetails extends React.PureComponent{
             </div>
         )
     }
-
 }

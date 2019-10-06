@@ -5,11 +5,12 @@ import {
     Box, 
   } from '@material-ui/core'
 
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import {
+    Favorite as FavoriteIcon,
+    AccountCircle as AccountCircleIcon
+}from '@material-ui/icons'
 
 import Rating from '@material-ui/lab/Rating';
-
 
 
 
@@ -18,26 +19,23 @@ export default class UserReviewItem extends React.Component{
 
     render(){
         return(
-
-
-            <div className="user_review_sample">
+            <div className="user_review_container">
 
                 <div className="left_hand_side_review">
-                    <div className="profile_picture">
-                        <AccountCircleIcon className="user_profile_pic_sample"/>
+                    <div className="user_profile_picture_container">
+                        <AccountCircleIcon className="user_profile_picture"/>
                     </div>
-                    <div>
+                    <div className="username">
                         Damien
                     </div>
-                    <div>
+                    <div className="user_nationality">
                         <FlagIcon code="fr"/>
                     </div>
-
                 </div>
 
                 <div className="right_hand_side_review">
                     <div className="review_header">
-                        <div>
+                        <div className="user_review_rating">
                             <Box component="fieldset" mb={3} borderColor="transparent">
                                 <Rating
                                 name="customized-color"
@@ -48,12 +46,15 @@ export default class UserReviewItem extends React.Component{
                                 />
                             </Box>
                         </div>
-                        <div>
+                        <div className="user_review_title">
                             "Great vibe"
                         </div>
                     </div>
+
                     <div className="review_content">
-                    Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                        <p>
+                            Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                        </p>
                     </div>
                 </div>
 

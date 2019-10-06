@@ -12,6 +12,10 @@ body{
     overflow-x: hidden
 }
 
+.App {
+    text-align: center;
+}
+
 .text_align_center{
     text-align: center;
 }
@@ -20,7 +24,40 @@ body{
     margin-top: 80px;
 }
 
+.list_style_none{
+    list-style: none;
+}
+
+.fit_content_width{
+    width: fit-content;
+}
+
 a:focus, a:hover, a:visited, a:link, a:active {
     text-decoration: none;
     color: inherit;
+}
+
+
+.center_vertically{
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.display_flex_row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.spaced_element{
+    margin-bottom: 30px !important;
+}
+
+.full_view{
+    position: relative;
+    min-height: 100vh;
+    margin-bottom: 50px;
+    width: 100%;
 }

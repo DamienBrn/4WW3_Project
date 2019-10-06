@@ -14,12 +14,40 @@
 }
 
 
-.fixed_title_icon{
+.navbar{
+    display: none;
+    color: #000000;
+    right: 0;
+    margin-right: 16% !important;
+}
+
+
+.navbar ul li{
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin-left: 2px;
+    margin-right: 4px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.4s;
+}
+
+
+.navbar ul li:hover{
+    background-color: #8d8d8d36;
+    border-radius: 5px;
+}
+
+
+.fixed_webtitle_menuicon{
     position: absolute;
     height: 80px;
     width: 100vw;
     line-height: 80px;
+    top:0;
 }
+
 
 .website_title{
     font-size: 30px;
@@ -50,42 +78,11 @@
     margin: auto;
 }
 
-.navbar{
-    display: none;
-    color: #000000;
-    right: 0;
-    margin-right: 16% !important;
-}
 
-
-.navbar ul li{
-    display: inline-flex;
-    flex-wrap: wrap;
-    margin-left: 2px;
-    margin-right: 4px;
-    padding: 8px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: all 0.4s;
-}
-
-.navbar ul li:hover{
-    background-color: #8d8d8d36;
-    border-radius: 5px;
-}
-
-.center_vertically{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-
+/*----------------------RESPONSIVE---------------------------*/
 
 @media screen and (max-width: 930px) {
-    #main_header {
+    .header_container{
       height: 70%;
     }
 

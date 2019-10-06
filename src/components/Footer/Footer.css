@@ -1,7 +1,3 @@
-.footer h3{
-    text-decoration: underline;
-}
-
 .footer_container{
     position: relative;
     bottom: 0;
@@ -11,6 +7,7 @@
     color: #ffffffab;
     padding: 20px;
 }
+
 
 .footer_content{
     position: relative;
@@ -25,18 +22,14 @@
     height: 190px;
 }
 
-.site_map ul{
-    display: inline-block;
-}
 
-
-.list_contact li, .site_map_list li{
+.contact_info_list li, .site_map_list li{
     text-align: left;
     margin-bottom: 5px;
 }
 
-.list_style_none{
-    list-style: none;
+.site_map_list{
+    display: inline-block;
 }
 
 .social_media_list li{
@@ -56,9 +49,9 @@
 
 
 
+/*--------------------------RESPONSIVE--------------------------*/
 
 @media screen and (max-width: 930px) {
-
 
     .footer_content{
         flex-direction: column;

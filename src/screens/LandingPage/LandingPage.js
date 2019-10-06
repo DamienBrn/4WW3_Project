@@ -5,7 +5,7 @@ import './LandingPage.css'
 import LandingBackground from '../../components/landingPage/LandingBackground/LandingBackground' 
 import LandingSearchForm from '../../components/landingPage/LandingSearchForm/LandingSearchForm'
 import FeaturedHotels from '../../components/landingPage/FeaturedHotels/FeaturedHotels'
-import FeaturedCountries from '../../components/landingPage/FeaturedCountries/FeaturedCountries'
+import FeaturedCities from '../../components/landingPage/FeaturedCities/FeaturedCities'
 import PopularHotels from '../../components/landingPage/PopularHotels/PopularHotels'
 import Mapitem from '../../components/landingPage/MapItem/MapItem'
 
@@ -24,13 +24,9 @@ export default class LandingPage extends React.PureComponent {
             </div>
 
             <div>
-
                 <FeaturedHotels/>
-
-                <FeaturedCountries/>
-                
+                <FeaturedCities/>
                 <PopularHotels/>
-            
             </div>
 
             <Mapitem/>
@@ -38,5 +34,9 @@ export default class LandingPage extends React.PureComponent {
         </div>
 
         )
+    }
+
+    componentDidMount(){
+        window.scrollTo(0, 0)
     }
 }

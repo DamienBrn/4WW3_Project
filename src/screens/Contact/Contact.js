@@ -14,4 +14,8 @@ export default class Contact extends React.PureComponent{
         )
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0)
+    }
+
 }

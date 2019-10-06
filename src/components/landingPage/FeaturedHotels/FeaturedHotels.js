@@ -8,7 +8,6 @@ import hotel_03 from '../../../assets/images/hotel_03.jpg'
 
 export default class FeaturedHotels extends React.Component{
 
-
     render(){
         return (
             <div className="featured_hotels">
@@ -28,9 +27,4 @@ export default class FeaturedHotels extends React.Component{
             </div>
         )
     }
-
-    constructor(props){
-        super(props)
-    }
-
 }

@@ -1,7 +1,11 @@
 import React from 'react'
 import './LandingSearchForm.css'
-import SearchIcon from '@material-ui/icons/Search';
-import LocationIcon from '@material-ui/icons/LocationOn';
+
+import {
+    Search as SearchIcon,
+    LocationOn as LocationIcon
+}from '@material-ui/icons'
+
 import { Button, TextField } from '@material-ui/core'
 
 
@@ -15,23 +19,18 @@ export default class LandingSearchForm extends React.Component{
                     <LocationIcon className="location_icon" style={{ fontSize: 30 }}/>
 
                     <TextField
-                            id="standard-name"
+                            id="landing_search_property"
                             label="Destination / Property"
                             margin="normal"
                             className="small_search_input"
                         />
 
                     <Button title="Search" variant="contained" color="primary" className="spaced_element small_search_button">
-                      <SearchIcon className="search_icon"/>
+                      <SearchIcon className="icon_left"/>
                     </Button>
 
                 </form>
             </div>
         )
-    }
-
-
-    constructor(props){
-        super(props)
     }
 }

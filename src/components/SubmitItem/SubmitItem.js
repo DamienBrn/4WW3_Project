@@ -3,14 +3,7 @@ import './SubmitItem.css'
 import {DropzoneDialog} from 'material-ui-dropzone'
 
 import { TextField, 
-    Box, 
     Button, 
-    Select, 
-    InputLabel, 
-    FormControl, 
-    Typography, 
-    MenuItem, 
-    Slider
   } from '@material-ui/core'
 
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
@@ -26,41 +19,40 @@ export default class SubmitItem extends React.Component{
 
                 <form className="submit_form">
 
+                    <fieldset>
+                        <legend>General</legend>
+                        <div className="section_container">
+                            <TextField
+                                id="property_name"
+                                label="Property Name"
+                                className="spaced_element"
+                                margin="normal"
+                                variant="outlined"
+                            />
 
-                <fieldset>
-                    <legend>General</legend>
-                    <div className="section_container">
-                        <TextField
-                            id="outlined-name"
-                            label="Property Name"
-                            className="spaced_element"
-                            margin="normal"
-                            variant="outlined"
-                        />
-
-                        <TextField
-                            id="outlined-name"
-                            label="Stars"
-                            className="spaced_element"
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </div>
-                </fieldset>
+                            <TextField
+                                id="proprty_number_of_stars"
+                                label="Stars"
+                                className="spaced_element"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                    </fieldset>
 
 
                     <fieldset>
                         <legend>Contact information</legend>
-                        <div className="contact_information section_container">
+                        <div className="owner_information section_container">
                             <TextField
-                                id="outlined-name"
+                                id="owner_fullname"
                                 label="Contact name"
                                 className="spaced_element"
                                 margin="normal"
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-name"
+                                id="owner_email"
                                 label="@Email"
                                 className="spaced_element"
                                 margin="normal"
@@ -68,7 +60,7 @@ export default class SubmitItem extends React.Component{
                                 type="email"
                             />
                             <TextField
-                                id="outlined-name"
+                                id="owner_phone_number"
                                 label="#Phone"
                                 className="spaced_element"
                                 margin="normal"
@@ -76,7 +68,7 @@ export default class SubmitItem extends React.Component{
                                 type="number"
                             />
                             <TextField
-                                id="todo"
+                                id="owner_alternative_phone_number"
                                 label="Alternative #Phone"
                                 className="spaced_element"
                                 margin="normal"
@@ -91,7 +83,7 @@ export default class SubmitItem extends React.Component{
                             <div className="location_inputs section_container">
 
                                 <TextField
-                                    id="outlined-name"
+                                    id="property_address"
                                     label="Address"
                                     className="spaced_element"
                                     margin="normal"
@@ -99,7 +91,7 @@ export default class SubmitItem extends React.Component{
                                 />
 
                                 <TextField
-                                    id="outlined-name"
+                                    id="property_address_2"
                                     label="Address 2"
                                     className="spaced_element"
                                     margin="normal"
@@ -107,7 +99,7 @@ export default class SubmitItem extends React.Component{
                                 />
 
                                 <TextField
-                                    id="outlined-name"
+                                    id="property_zipcode"
                                     label="Zip Code"
                                     className="spaced_element"
                                     margin="normal"
@@ -116,9 +108,8 @@ export default class SubmitItem extends React.Component{
 
                                 <div>
                             
-
                                 <TextField
-                                    id="outlined-name"
+                                    id="property_country"
                                     label="Country"
                                     className="spaced_element"
                                     margin="normal"
@@ -126,7 +117,7 @@ export default class SubmitItem extends React.Component{
                                 />
 
                                 <TextField
-                                    id="outlined-name"
+                                    id="property_state"
                                     label="State / Province / Region"
                                     className="spaced_element"
                                     margin="normal"
@@ -134,7 +125,7 @@ export default class SubmitItem extends React.Component{
                                 />
 
                                 <TextField
-                                    id="outlined-name"
+                                    id="property_city"
                                     label="City"
                                     className="spaced_element"
                                     margin="normal"
@@ -151,14 +142,14 @@ export default class SubmitItem extends React.Component{
                         <legend>Details</legend>
                         <div className="section_container">
                             <TextField
-                                id="outlined-name"
+                                id="property_services"
                                 label="Services"
                                 className="spaced_element"
                                 margin="normal"
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-name"
+                                id="property_facilities"
                                 label="Facilities"
                                 className="spaced_element"
                                 margin="normal"
@@ -166,7 +157,7 @@ export default class SubmitItem extends React.Component{
                             />
 
                             <TextField
-                                id="outlined-name"
+                                id="property_number_of_rooms"
                                 label="Number of rooms"
                                 className="spaced_element"
                                 margin="normal"
@@ -180,7 +171,7 @@ export default class SubmitItem extends React.Component{
                         <legend>Display your property</legend>
                         <div>
                             <Button onClick={()=>this.handleOpen()}>
-                            Add file(s)
+                                Add file(s)
                             </Button>
                             <DropzoneDialog
                                 open={this.state.open}
@@ -189,7 +180,6 @@ export default class SubmitItem extends React.Component{
                                 showPreviews={true}
                                 maxFileSize={25000000}
                                 onClose={()=>this.handleClose()}
-
                                 dropzoneClass="dropzone_files"
                                 dropzoneText="Drag and drop a file or click here"
                             />
@@ -225,7 +215,6 @@ export default class SubmitItem extends React.Component{
     }
 
     handleSave(files) {
-        //Saving files to state for further use and closing Modal.
         this.setState({
             files: files, 
             open: false

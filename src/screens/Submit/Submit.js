@@ -14,5 +14,11 @@ export default class Submit extends React.PureComponent{
             </div>
         )
     }
+
+
+    componentDidMount(){
+        window.scrollTo(0, 0)
+    }
+
 }
 

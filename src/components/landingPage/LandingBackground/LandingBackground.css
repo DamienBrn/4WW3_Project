@@ -28,27 +28,24 @@
     margin-left: 10%;
   }
 
-/**/
 
 .star_container{
     font-size: 20px;
   }
   
-  .star_icon{
-    color: #d3d343;
-    position: absolute;
-    transform: translateY(-10px);
-  }
+.star_icon{
+  color: #d3d343;
+  position: absolute;
+  transform: translateY(-13px);
+}
+
+.star_border{
+  border-bottom: solid 1px #6e6e6e;
+  margin-top: 20px;
+}
   
-  .star_border{
-    border-bottom: solid 1px #6e6e6e;
-    margin-top: 20px;
-  }
-  
 
-
-
-/*-------*/
+/*------------Scroll Icon and animation imported from CodePen-------------------*/
 
 #scroll_icon{
     position: absolute;
@@ -132,8 +129,7 @@
 
 
 
-
-  /**/
+  /*-------------------RESPONSIVE-----------------------------*/
 
 
   @media screen and (max-width: 930px) {

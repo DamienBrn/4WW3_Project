@@ -1,6 +1,5 @@
 import React from 'react'
 import './SearchForm.css'
-
 import { TextField, 
   Box, 
   Button, 
@@ -11,27 +10,20 @@ import { TextField,
   MenuItem, 
   Slider
 } from '@material-ui/core'
-
 import { withStyles } from '@material-ui/core/styles';
-
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-
 import DateFnsUtils from '@date-io/date-fns';
-
 import SearchIcon from '@material-ui/icons/Search';
-
 import Rating from '@material-ui/lab/Rating';
-
 
 
 
 export default class SearchForm extends React.Component{
     render(){
         return (
-
             <div className="search_form_container">
 
               <div className="search_layout_container">
@@ -53,7 +45,7 @@ export default class SearchForm extends React.Component{
                           variant="inline"
                           format="MM/dd/yyyy"
                           margin="normal"
-                          id="date-picker-inline"
+                          id="date_picker_arrival"
                           label="Date picker inline"
                           value={this.state.selectedDate}
                           onChange={()=>this.handleDateChange()}
@@ -68,7 +60,7 @@ export default class SearchForm extends React.Component{
                           variant="inline"
                           format="MM/dd/yyyy"
                           margin="normal"
-                          id="date-picker-inline"
+                          id="date_picker_departure"
                           label="Date picker inline"
                           value={this.state.selectedDate}
                           onChange={()=>this.handleDateChange()}
@@ -80,7 +72,7 @@ export default class SearchForm extends React.Component{
 
 
                     <FormControl variant="outlined" className="spaced_element">
-                      <InputLabel  htmlFor="outlined-age-simple">
+                      <InputLabel  htmlFor="number_adults">
                         Adults
                       </InputLabel>
                       <Select
@@ -88,8 +80,8 @@ export default class SearchForm extends React.Component{
                        /* onChange={}
                         labelWidth={}*/
                         inputProps={{
-                          name: 'age',
-                          id: 'outlined-age-simple',
+                          name: 'adults',
+                          id: 'number_adults',
                         }}
                       >
                         <MenuItem value="">
@@ -104,7 +96,7 @@ export default class SearchForm extends React.Component{
 
                     <div className="grouped_input spaced_element">
                       <FormControl variant="outlined">
-                        <InputLabel  htmlFor="outlined-age-simple">
+                        <InputLabel  htmlFor="number_children">
                           Children
                         </InputLabel>
                         <Select
@@ -112,8 +104,8 @@ export default class SearchForm extends React.Component{
                         /* onChange={}
                           labelWidth={}*/
                           inputProps={{
-                            name: 'age',
-                            id: 'outlined-age-simple',
+                            name: 'children',
+                            id: 'number_children',
                           }}
                         >
                           <MenuItem value="">
@@ -126,7 +118,7 @@ export default class SearchForm extends React.Component{
                       </FormControl>
 
                       <FormControl variant="outlined">
-                        <InputLabel  htmlFor="outlined-age-simple">
+                        <InputLabel  htmlFor="number_rooms">
                           Rooms
                         </InputLabel>
                         <Select
@@ -135,7 +127,7 @@ export default class SearchForm extends React.Component{
                           labelWidth={}*/
                           inputProps={{
                             name: 'age',
-                            id: 'outlined-age-simple',
+                            id: 'number_rooms',
                           }}
                         >
                           <MenuItem value="">
@@ -151,7 +143,7 @@ export default class SearchForm extends React.Component{
                     <Box component="fieldset" mb={3} borderColor="transparent" className="spaced_element">
                       <Typography component="legend">Stars</Typography>
                       <Rating
-                        name="simple-controlled"
+                        name="number_stars"
                         value={2}
                         /*onChange={(event, newValue) => {
                           setValue(newValue);
@@ -167,7 +159,7 @@ export default class SearchForm extends React.Component{
                     
                     <Button variant="contained" color="primary" className="spaced_element">
                       Search
-                      <SearchIcon className="search_icon"/>
+                      <SearchIcon className="icon_left"/>
                     </Button>
 
                   </form>
@@ -178,8 +170,6 @@ export default class SearchForm extends React.Component{
 
         )
     }
-
-
 
     constructor(props){
       super(props)
@@ -193,11 +183,10 @@ export default class SearchForm extends React.Component{
           selectedDate : newDate
       })
   }
-
-
 }
 
 
+/*-----------------------Styles imported from @material-ui for the AirBnB Slider-------------------------------*/ 
 
 const AirbnbSlider = withStyles({
   root: {
@@ -217,7 +206,6 @@ const AirbnbSlider = withStyles({
       boxShadow: '#ccc 0px 2px 3px 1px',
     },
     '& .bar': {
-      // display: inline-block !important;
       height: 9,
       width: 1,
       backgroundColor: 'currentColor',

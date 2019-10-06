@@ -2,6 +2,11 @@
     border-radius: 5px;
 }
 
+.section_container{
+    width: fit-content;
+    padding: 20px;
+    border-radius: 5px;
+}
 
 .dropzone_files{
     color: red;
@@ -16,10 +21,3 @@
     right: 5%;
 }
 
-
-.section_container{
-    /*border: solid 1px #6c6c6c;*/
-    width: fit-content;
-    padding: 20px;
-    border-radius: 5px;
-}

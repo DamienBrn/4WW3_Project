@@ -22,11 +22,10 @@ export default class SignupForm extends React.Component{
 
     render(){
         return (
-
-                <Dialog open={this.props.open} onClose={this.props.handleClose} onBackdropClick={this.props.handleClose} aria-labelledby="form-dialog-title">
+                <Dialog open={this.props.open} onClose={this.props.handleClose} onBackdropClick={this.props.handleClose}>
                     <DialogTitle id="form-dialog-title" className="text_align_center">Sign up</DialogTitle>
 
-                    <IconButton aria-label="close" className="close_button" onClick={this.props.handleClose}>
+                    <IconButton title="close" className="close_button" onClick={this.props.handleClose}>
                         <CloseIcon/>
                     </IconButton>
 
@@ -38,7 +37,7 @@ export default class SignupForm extends React.Component{
 
                         <div className="signup_inputs_container">
                             <TextField
-                                id="outlined-name"
+                                id="signup_email"
                                 label="@Email address"
                                 className="spaced_element"
                                 margin="normal"
@@ -47,7 +46,7 @@ export default class SignupForm extends React.Component{
                             />
 
                             <TextField
-                                id="outlined-name"
+                                id="signup_password"
                                 label="Create a password"
                                 className="spaced_element"
                                 margin="normal"
@@ -59,7 +58,7 @@ export default class SignupForm extends React.Component{
                         
                         <Button variant="contained" color="primary" className="signup_button">
                             Sign up
-                            <SignupIcon className="search_icon">send</SignupIcon>
+                            <SignupIcon className="icon_left"/>
                         </Button>
 
 

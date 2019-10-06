@@ -2,7 +2,7 @@
     padding: 50px;
 }
 
-.flex_display{
+.display_flex_inline{
     display: inline-flex;
 }
 
@@ -18,7 +18,7 @@
     box-shadow: 2px 3px 5px 0px rgba(122,122,122,1);
 }
 
-.search_icon{
+.icon_left{
     position: absolute;
     left: 0;
     margin-left: 20px;
@@ -29,11 +29,6 @@
     flex-direction: row;
     justify-content: space-around;
 }
-
-.spaced_element{
-    margin-bottom: 30px !important;
-}
-
 
 .grouped_input div{
     width: 100px;
