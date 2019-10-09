@@ -11,11 +11,10 @@ import {
     DialogContentText, 
     DialogTitle, 
     FormControlLabel
-
 } from '@material-ui/core'
+import { Close as CloseIcon, PersonAdd as SignupIcon, Help as HelpIcon } from '@material-ui/icons'
 
-import { Close as CloseIcon, PersonAdd as SignupIcon } from '@material-ui/icons'
-
+import PasswordHelpPopover from './PasswordHelpPopover/PasswordHelpPopover'
 
 
 export default class SignupForm extends React.Component{
@@ -37,41 +36,64 @@ export default class SignupForm extends React.Component{
 
                         <div className="signup_inputs_container">
                             <TextField
+                                required
+                                error={this.state.errorState.email}
                                 id="signup_email"
                                 label="@Email address"
                                 className="spaced_element"
                                 margin="normal"
                                 variant="outlined"
                                 type="email"
+                                onChange={(event)=>this.handleEmailChange(event.target.value)}
                             />
 
+
+                            <div>
+                                <PasswordHelpPopover/>
+                            </div>
+
                             <TextField
+                                required
+                                error={this.state.errorState.password}
                                 id="signup_password"
                                 label="Create a password"
                                 className="spaced_element"
                                 margin="normal"
                                 variant="outlined"
                                 type="password"
+                                onChange={(event)=>this.handlePasswordChange(event.target.value)}
                             />
                         </div>
 
-                        
                         <Button variant="contained" color="primary" className="signup_button">
                             Sign up
                             <SignupIcon className="icon_left"/>
                         </Button>
 
 
-                        <DialogContentText className="text_align_center">
+                        <DialogContentText className="text_align_center already_have_account">
                             Already have an account ? Login
                         </DialogContentText>
+
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={true}
-                                onChange={()=>console.log('checkChange')}
-                                value="checkedB"
+                                checked={this.state.checkboxValue.terms}
+                                onChange={()=>this.handleCheckBoxClick('terms')}
+                                value={this.state.checkboxValue.terms}
+                                color="primary"
+                            />
+                            }
+                            label="I read and accept the terms and conditions  *"
+                        />
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={this.state.checkboxValue.news}
+                                onChange={()=>this.handleCheckBoxClick('news')}
+                                value={this.state.checkboxValue.news}
                                 color="primary"
                             />
                             }
@@ -86,5 +108,72 @@ export default class SignupForm extends React.Component{
 
     constructor(props){
         super(props)
+        this.state = {
+            checkboxValue : false,
+            email : '',
+            password :'',
+            errorState : {
+                email : false,
+                password : false
+            }
+        }
     }
+
+    handleCheckBoxClick(key){
+        this.setState({
+            ...this.state,
+            checkboxValue : {
+                ...this.checkboxValue,
+                [key] : !this.state.checkboxValue[key]
+            }
+        })
+    }
+
+
+
+    handleEmailChange(email){
+        let regex = /\S+@\S+\.\S+/;
+        if(regex.test(email)){
+            this.setState({
+                ...this.state,
+                email : email,
+                errorState : {
+                    ...this.errorState,
+                    email : false
+                }
+            })
+        }else{
+            this.setState({
+                ...this.state,
+                errorState : {
+                    ...this.errorState,
+                    email : true
+                }
+            })
+        }
+    }
+
+    handlePasswordChange(password){
+        let regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.\,\;\,])(?=.{8,})/
+
+        if(regex.test(password)){
+            this.setState({
+                ...this.state,
+                password : password,
+                errorState : {
+                    ...this.errorState,
+                    password : false
+                }
+            })
+        }else{
+            this.setState({
+                ...this.state,
+                errorState : {
+                    ...this.errorState,
+                    password : true
+                }
+            })
+        }
+    }
+
 }

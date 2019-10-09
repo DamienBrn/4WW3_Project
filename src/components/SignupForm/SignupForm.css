@@ -29,3 +29,20 @@
     transform: translateX(-50%);
     margin-bottom: 20px !important;
 }
+
+
+.popover_help_icon{
+    font-size: 30px !important;
+    color: #3f51b5;
+    cursor: pointer;
+}
+
+.typo_popover{
+    padding: 20px;
+}
+
+.already_have_account:hover{
+    color: #3f51b5;
+    text-decoration: underline;
+    cursor: pointer;
+}
