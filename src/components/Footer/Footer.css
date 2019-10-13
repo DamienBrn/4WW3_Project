@@ -22,6 +22,9 @@
     height: 190px;
 }
 
+.site_map_list li{
+    cursor: pointer;
+}
 
 .contact_info_list li, .site_map_list li{
     text-align: left;
@@ -40,6 +43,11 @@
 
 .social_media_list li:hover{
     color: #ffffff;
+}
+
+.site_map_list li:hover, #contact_email:hover, #contact_address:hover{
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 .medium_scale{

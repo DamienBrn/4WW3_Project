@@ -1,10 +1,9 @@
 import React from 'react'
 import './MapItem.css'
-import map_src from '../../../assets/images/map_screen.JPG'
+import GoogleMap, { Map,GoogleApiWrapper, Marker} from 'google-maps-react';
 
 
-
-export default class MapItem extends React.Component{
+class MapItem extends React.Component{
 
 
     render(){
@@ -14,13 +13,23 @@ export default class MapItem extends React.Component{
 
                     <h2>Nearby Hotels</h2>
 
-                    <div id="user_coordinates">{this.getUserLocation()}</div>
+                    <div className="map_container">
+                        <Map
+                            google={this.props.google}
+                            zoom={8}
+                            className="map"
+                            initialCenter={this.state.userPosition}
+                        >
 
-                    <div className="map">
-                        <img src={map_src} />
+                            <Marker 
+                    
+                            />
+
+                        </Map>
                     </div>
 
                 </div>
+
             </div>
         )
     }
@@ -29,34 +38,34 @@ export default class MapItem extends React.Component{
         super(props)
         this.state = {
             userPosition : {
-                latitude : 0,
-                longitude :0
+                lat : 43.2634377,
+                lng : -79.9289439
             }
         }
     }
 
-    getUserLocation() {
-        let coordinatesContainer = document.getElementById('user_coordinates')
+    componentDidMount(){
+        this.getUserLocation()
+    }
 
+    getUserLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.showUserPosition);
-        }else{
-            coordinatesContainer.innerHTML = "Geolocalisation not supported by this browser"
+            navigator.geolocation.getCurrentPosition((position)=>this.showUserPosition(position));
         }
     }
 
-    showUserPosition(position) {
-        let coordinatesContainer = document.getElementById('user_coordinates')
-
-        coordinatesContainer.innerHTML = `Latitude : ${position.coords.latitude} <br/> Longitude : ${position.coords.longitude}`
+    showUserPosition(position){
+        this.setState({
+            ...this.state,
+            userPosition : {
+                ...this.userPosition,
+                lat : position.coords.latitude,
+                lng : position.coords.longitude
+            }
+        })
     }
-
-
-    // showUserPositionOnMap(position) {
-    //     var latlon = position.coords.latitude + "," + position.coords.longitude;
-      
-    //     var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY";
-      
-    //     document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-    //   }
 }
+
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyBzIYx2VVzDdL7GWsKkYupI6QDs1GB3WGA'
+  })(MapItem);

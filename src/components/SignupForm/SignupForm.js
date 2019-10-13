@@ -1,5 +1,6 @@
 import React from 'react'
 import './SignupForm.css'
+import PasswordStrengthMeter from '../PasswordStrengthMeter/PasswordStrengthMeter'
 
 import {
     TextField, 
@@ -34,71 +35,82 @@ export default class SignupForm extends React.Component{
                             Sign up now, it's FREE !
                         </DialogContentText>
 
-                        <div className="signup_inputs_container">
-                            <TextField
-                                required
-                                error={this.state.errorState.email}
-                                id="signup_email"
-                                label="@Email address"
-                                className="spaced_element"
-                                margin="normal"
-                                variant="outlined"
-                                type="email"
-                                onChange={(event)=>this.handleEmailChange(event.target.value)}
-                            />
+                        <form onSubmit={(event)=>this.handleSubmit(event)}>
 
+                            <div className="signup_inputs_container">
+                                <TextField
+                                    required
+                                    error={this.state.errorState.email}
+                                    id="signup_email"
+                                    label="@Email address"
+                                    className="spaced_element"
+                                    margin="normal"
+                                    variant="outlined"
+                                    type="email"
+                                    onChange={(event)=>this.handleEmailChange(event.target.value)}
+                                />
 
-                            <div>
-                                <PasswordHelpPopover/>
+                                <div>
+                                    <PasswordHelpPopover/>
+                                </div>
+
+                                <div className="password_container">
+                                    <TextField
+                                        required
+                                        error={this.state.errorState.password}
+                                        id="signup_password"
+                                        label="Create a password"
+                                        className="spaced_element password_input"
+                                        margin="normal"
+                                        variant="outlined"
+                                        type="password"
+                                        onChange={(event)=>this.handlePasswordChange(event.target.value)}
+                                    />
+
+                                    <PasswordStrengthMeter password={this.state.password}/>
+                                </div>
                             </div>
 
-                            <TextField
-                                required
-                                error={this.state.errorState.password}
-                                id="signup_password"
-                                label="Create a password"
-                                className="spaced_element"
-                                margin="normal"
-                                variant="outlined"
-                                type="password"
-                                onChange={(event)=>this.handlePasswordChange(event.target.value)}
+                            <div className="error_messages_section">
+                                {this.state.errorMessage}
+                            </div>
+
+                            <Button type="submit" variant="contained" color="primary" className="signup_button">
+                                Sign up
+                                <SignupIcon className="icon_left"/>
+                            </Button>
+
+
+                            <DialogContentText className="text_align_center already_have_account">
+                                Already have an account ? Login
+                            </DialogContentText>
+
+
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        required
+                                        checked={this.state.checkboxValue.terms}
+                                        onClick={()=>this.handleCheckBoxClick('terms')}
+                                        value={this.state.checkboxValue.terms}
+                                        color="primary"
+                                    />
+                                }
+                                label="I read and accept the terms and conditions  *"
                             />
-                        </div>
 
-                        <Button variant="contained" color="primary" className="signup_button">
-                            Sign up
-                            <SignupIcon className="icon_left"/>
-                        </Button>
-
-
-                        <DialogContentText className="text_align_center already_have_account">
-                            Already have an account ? Login
-                        </DialogContentText>
-
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={this.state.checkboxValue.terms}
-                                onChange={()=>this.handleCheckBoxClick('terms')}
-                                value={this.state.checkboxValue.terms}
-                                color="primary"
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={this.state.checkboxValue.news}
+                                        onClick={()=>this.handleCheckBoxClick('news')}
+                                        value={this.state.checkboxValue.news}
+                                        color="primary"
+                                    />
+                                }
+                                label="Yes, please inform me about travel deals, tips and new features on Berno Hotels. I can opt out at any time."
                             />
-                            }
-                            label="I read and accept the terms and conditions  *"
-                        />
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={this.state.checkboxValue.news}
-                                onChange={()=>this.handleCheckBoxClick('news')}
-                                value={this.state.checkboxValue.news}
-                                color="primary"
-                            />
-                            }
-                            label="Yes, please inform me about travel deals, tips and new features on Berno Hotels. I can opt out at any time."
-                        />
+                        </form>
 
                     </DialogContent>
 
@@ -109,13 +121,17 @@ export default class SignupForm extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            checkboxValue : false,
+            checkboxValue : {
+                terms : false,
+                news : false
+            },
             email : '',
             password :'',
             errorState : {
                 email : false,
                 password : false
-            }
+            },
+            errorMessage : ''
         }
     }
 
@@ -123,12 +139,11 @@ export default class SignupForm extends React.Component{
         this.setState({
             ...this.state,
             checkboxValue : {
-                ...this.checkboxValue,
+                ...this.state.checkboxValue,
                 [key] : !this.state.checkboxValue[key]
             }
         })
     }
-
 
 
     handleEmailChange(email){
@@ -163,11 +178,13 @@ export default class SignupForm extends React.Component{
                 errorState : {
                     ...this.errorState,
                     password : false
-                }
+                },
+                errorMessage : ''
             })
         }else{
             this.setState({
                 ...this.state,
+                password : password,
                 errorState : {
                     ...this.errorState,
                     password : true
@@ -176,4 +193,19 @@ export default class SignupForm extends React.Component{
         }
     }
 
+    handleSubmit=(event)=>{
+        if(this.state.errorState.password === false){
+            alert("Congratulations ! You are now registered");
+        }else{
+            this.displayErrorMessage()
+        }
+        event.preventDefault();
+      }
+
+      displayErrorMessage(){
+        this.setState({
+            ...this.state,
+            errorMessage : 'Please enter a valid password.'
+        })
+      }
 }

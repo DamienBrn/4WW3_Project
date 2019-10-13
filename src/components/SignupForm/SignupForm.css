@@ -46,3 +46,18 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.password_input{
+    width: 100%;
+}
+
+.password_container{
+    position: relative;
+}
+
+.error_messages_section{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff0004;
+    height: 20px;
+}

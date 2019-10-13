@@ -12,6 +12,7 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookIcon from '@material-ui/icons/Book';
 import Rating from '@material-ui/lab/Rating';
+import MapSingleItem from '../MapSingleItem/MapSingleItem'
 
 
 export default class HotelItemDetails extends React.Component{
@@ -73,7 +74,7 @@ export default class HotelItemDetails extends React.Component{
                     <div className="display_flex_row">
                         <div className="map_hotel_details">
 
-                            <img src={map_src} />
+                            <MapSingleItem/>
 
                         </div>
 
