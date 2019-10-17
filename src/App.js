@@ -36,7 +36,7 @@ function App() {
               <Route path="/submit" component={Submit}/>
               <Route path="/about" component={About}/>
               <Route path="/contact" component={Contact}/>
-              <Route path="/hotel_details_sample" component={HotelDetails}/>
+              <Route path="/:hotelId" component={HotelDetails} exact/>
               <Route component={Error}/>
             </Switch>
           

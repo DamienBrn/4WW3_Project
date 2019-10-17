@@ -8,7 +8,6 @@ class MapItem extends React.Component{
 
     render(){
         return (
-            <div>
                 <div className="near_location_hotels">
 
                     <h2>Nearby Hotels</h2>
@@ -20,17 +19,11 @@ class MapItem extends React.Component{
                             className="map"
                             initialCenter={this.state.userPosition}
                         >
-
-                            <Marker 
-                    
-                            />
+                            <Marker/>
 
                         </Map>
                     </div>
-
                 </div>
-
-            </div>
         )
     }
 

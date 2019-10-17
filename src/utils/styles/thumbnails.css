@@ -2,21 +2,23 @@
     position: relative;
     display: inline-block;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
     cursor: pointer;
     height: 300px;
     width: 400px;
     transition: all 0.5s;
-    border: solid 1.5px transparent;
     border-radius: 5px;
+    transition: all .2s ease-in-out;
 }
 
 .thumbnail_container:hover{
-    border: solid 1.5px #0027ff;
+    z-index: 10;
+    transform: scale(1.1);
 }
 
 .thumbnail_container:hover .thumbnail_overlay{
     opacity: 0.5;
+    
 }
 
 .thumbnail{

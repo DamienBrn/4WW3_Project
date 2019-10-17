@@ -17,13 +17,13 @@ export default class PopularHotels extends React.Component{
 
                 <div className="popular_hotels_thumbnails" style={{marginTop:50}}>
                     <div>
-                    <HotelItem src={hotel_paris} hotelName="Lafayette" countryCode="fr" cityName="Paris"/>
+                    <HotelItem src={hotel_paris} hotelName="Lafayette" countryCode="fr" cityName="Paris" rating={70} price={95} stars={3}/>
                     </div>
                     <div>
-                    <HotelItem src={hotel_geneva} hotelName="Four Seasons" countryCode="ch" cityName="Geneva"/>
+                    <HotelItem src={hotel_geneva} hotelName="Four Seasons" countryCode="ch" cityName="Geneva" rating={99} price={500} stars={5}/>
                     </div>
                     <div>
-                    <HotelItem src={hotel_lisbonne} hotelName="PortoBay" countryCode="pt" cityName="Lisbon"/>
+                    <HotelItem src={hotel_lisbonne} hotelName="PortoBay" countryCode="pt" cityName="Lisbon" rating={60} price={50} stars={2}/>
                     </div>
                 </div>
 

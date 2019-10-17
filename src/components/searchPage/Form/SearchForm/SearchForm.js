@@ -1,6 +1,7 @@
 import React from 'react'
 import './SearchForm.css'
-import { TextField, 
+import { 
+  TextField, 
   Box, 
   Button, 
   Select, 
@@ -17,7 +18,9 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import SearchIcon from '@material-ui/icons/Search';
+import HomeIcon from '@material-ui/icons/Home';
 import Rating from '@material-ui/lab/Rating';
+import MapResults from '../../MapResults/MapResults'
 
 
 
@@ -29,6 +32,15 @@ export default class SearchForm extends React.Component{
               <div className="search_layout_container">
 
                 <form className="search_form">
+
+                <Button variant="contained" color="primary" className="spaced_element" onClick={()=>this.searchNearbyHotels()}>
+                      Nearby hotels
+                      <HomeIcon className="icon_left"/>
+                </Button>
+                <div>
+                  lat : {this.state.userPosition.lat}<br/>
+                  lng : {this.state.userPosition.lng}
+                </div>
 
                   <TextField
                     id="outlined-name"
@@ -46,9 +58,9 @@ export default class SearchForm extends React.Component{
                           format="MM/dd/yyyy"
                           margin="normal"
                           id="date_picker_arrival"
-                          label="Date picker inline"
-                          value={this.state.selectedDate}
-                          onChange={()=>this.handleDateChange()}
+                          label="From"
+                          value={this.state.selectedDate.from}
+                          onChange={(date)=>this.handleDateChange(date, 'from')}
                           KeyboardButtonProps={{
                               'aria-label': 'change date',
                           }}
@@ -61,9 +73,9 @@ export default class SearchForm extends React.Component{
                           format="MM/dd/yyyy"
                           margin="normal"
                           id="date_picker_departure"
-                          label="Date picker inline"
-                          value={this.state.selectedDate}
-                          onChange={()=>this.handleDateChange()}
+                          label="To"
+                          value={this.state.selectedDate.to}
+                          onChange={(date)=>this.handleDateChange(date, 'to')}
                           KeyboardButtonProps={{
                               'aria-label': 'change date',
                           }}
@@ -76,20 +88,24 @@ export default class SearchForm extends React.Component{
                         Adults
                       </InputLabel>
                       <Select
-                        value={"test"}
-                       /* onChange={}
-                        labelWidth={}*/
+                        value={this.state.numberOfAdults}
+                        onChange={(event)=>this.handleSelectChange(event)}
+                        labelWidth={50}
                         inputProps={{
-                          name: 'adults',
+                          name: 'numberOfAdults',
                           id: 'number_adults',
                         }}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>1 adult</MenuItem>
-                        <MenuItem value={20}>2 adults</MenuItem>
-                        <MenuItem value={30}>3 adults</MenuItem>
+                          <MenuItem value={1}>1 adult</MenuItem>
+                          <MenuItem value={2}>2 adults</MenuItem>
+                          <MenuItem value={3}>3 adults</MenuItem>
+                          <MenuItem value={4}>4 adults</MenuItem>
+                          <MenuItem value={5}>5 adults</MenuItem>
+                          <MenuItem value={6}>6 adults</MenuItem>
+                          <MenuItem value={7}>7 adults</MenuItem>
+                          <MenuItem value={8}>8 adults</MenuItem>
+                          <MenuItem value={9}>9 adults</MenuItem>
+                          <MenuItem value={10}>10 adults</MenuItem>
                       </Select>
                     </FormControl>
 
@@ -100,20 +116,27 @@ export default class SearchForm extends React.Component{
                           Children
                         </InputLabel>
                         <Select
-                          value={"test"}
-                        /* onChange={}
-                          labelWidth={}*/
+                          value={this.state.numberOfChildren}
+                          onChange={(event)=>this.handleSelectChange(event)}
+                          labelWidth={60}
                           inputProps={{
-                            name: 'children',
+                            name: 'numberOfChildren',
                             id: 'number_children',
                           }}
                         >
-                          <MenuItem value="">
+                          <MenuItem value={0}>
                             <em>None</em>
                           </MenuItem>
-                          <MenuItem value={10}>1 child</MenuItem>
-                          <MenuItem value={20}>2 children</MenuItem>
-                          <MenuItem value={30}>3 children</MenuItem>
+                          <MenuItem value={1}>1 child</MenuItem>
+                          <MenuItem value={2}>2 children</MenuItem>
+                          <MenuItem value={3}>3 children</MenuItem>
+                          <MenuItem value={4}>4 children</MenuItem>
+                          <MenuItem value={5}>5 children</MenuItem>
+                          <MenuItem value={6}>6 children</MenuItem>
+                          <MenuItem value={7}>7 children</MenuItem>
+                          <MenuItem value={8}>8 children</MenuItem>
+                          <MenuItem value={9}>9 children</MenuItem>
+                          <MenuItem value={10}>10 children</MenuItem>
                         </Select>
                       </FormControl>
 
@@ -122,41 +145,80 @@ export default class SearchForm extends React.Component{
                           Rooms
                         </InputLabel>
                         <Select
-                          value={"test"}
-                        /* onChange={}
-                          labelWidth={}*/
+                          value={this.state.numberOfRooms}
+                          onChange={(event)=>this.handleSelectChange(event)}
+                          labelWidth={50}
                           inputProps={{
-                            name: 'age',
+                            name: 'numberOfRooms',
                             id: 'number_rooms',
                           }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>1 room</MenuItem>
-                          <MenuItem value={20}>2 rooms</MenuItem>
-                          <MenuItem value={30}>3 rooms</MenuItem>
+                          <MenuItem value={1}>1 room</MenuItem>
+                          <MenuItem value={2}>2 rooms</MenuItem>
+                          <MenuItem value={3}>3 rooms</MenuItem>
+                          <MenuItem value={4}>4 rooms</MenuItem>
+                          <MenuItem value={5}>5 rooms</MenuItem>
+                          <MenuItem value={6}>6 rooms</MenuItem>
+                          <MenuItem value={7}>7 rooms</MenuItem>
+                          <MenuItem value={8}>8 rooms</MenuItem>
+                          <MenuItem value={9}>9 rooms</MenuItem>
+                          <MenuItem value={10}>10 rooms</MenuItem>
                         </Select>
                       </FormControl>
                     </div>
-
-                    <Box component="fieldset" mb={3} borderColor="transparent" className="spaced_element">
-                      <Typography component="legend">Stars</Typography>
-                      <Rating
-                        name="number_stars"
-                        value={2}
-                        /*onChange={(event, newValue) => {
-                          setValue(newValue);
-                        }}*/
-                      />
-                    </Box>
-
-                    <AirbnbSlider className="spaced_element"
-                      ThumbComponent={AirbnbThumbComponent}
-                      getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                      defaultValue={[20, 40]}
-                    />
                     
+                    <div className="stars_container">
+                      <Box component="fieldset" mb={3} borderColor="transparent" className="spaced_element">
+                        <Typography component="legend">Stars</Typography>
+                        <Rating
+                          name="number_stars"
+                          value={this.state.numberOfStars}
+                          onChange={(e, newValue) => this.handleStarsValueChange(newValue)}
+                        />
+                      </Box>
+                      {/* {this.state.numberOfStars} */}
+                    </div>
+
+
+                    <div>
+                          <h3>Price /night</h3>
+                      <div className="price_range_labels">
+                        <div>
+                          <span className="float_left">Min :</span><span className="float_right price_range_values">
+                          {this.state.priceRange[0]} 
+                          {/* <TextField
+                            id="standard-name"
+                            value={this.state.priceRange[0]}
+                            onChange={handleChange('name')}
+                            margin="normal"
+                          /> */}
+
+                          $
+                          </span>
+                        </div>
+                        <div>
+                          <span className="float_left">Max :</span><span className="float_right price_range_values">
+                          {this.state.priceRange[1]}
+
+                            {/* todo */}
+
+                          $
+                          </span>
+                        </div>
+                      </div>
+
+                      <AirbnbSlider className="spaced_element"
+                        ThumbComponent={AirbnbThumbComponent}
+                        getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
+                        value={this.state.priceRange}
+                        onChange={(e, newValue)=>this.handlePriceChange(newValue)}
+                        valueLabelDisplay="on"
+                        min={0}
+                        max={1000}
+                      />
+                    </div>
+                        
+
                     <Button variant="contained" color="primary" className="spaced_element">
                       Search
                       <SearchIcon className="icon_left"/>
@@ -167,22 +229,85 @@ export default class SearchForm extends React.Component{
               </div>
 
             </div>
-
         )
     }
 
     constructor(props){
       super(props)
       this.state = {
-          selectedDate : new Date('2014-08-18T21:11:54')
+          selectedDate : {
+            from : new Date(),
+            to : new Date()
+          },
+          numberOfAdults : 1,
+          numberOfChildren : 0,
+          numberOfRooms : 1,
+          numberOfStars : 4,
+          priceRange : [0, 40],
+          userPosition : {
+            lat : 0,
+            lng : 0
+        }
       }
   }
 
-  handleDateChange(newDate){
+  handleDateChange(newDate, key){
       this.setState({
-          selectedDate : newDate
+        ...this.state,
+          selectedDate : {
+            ...this.state.selectedDate,
+            [key] : newDate
+          }
       })
   }
+
+  handleSelectChange(event){
+    this.setState({
+      ...this.state,
+      [event.target.name]: event.target.value
+    })
+  }
+
+
+
+  handleStarsValueChange(newValue){
+      this.setState({
+        ...this.state,
+        numberOfStars : newValue
+      })
+  }
+
+
+  handlePriceChange(newValue){
+    this.setState({
+      ...this.state,
+      priceRange : newValue
+    })
+  }
+
+
+  getUserLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position)=>this.showUserPosition(position));
+      }
+  }
+
+  showUserPosition(position){
+      this.setState({
+          ...this.state,
+          userPosition : {
+              ...this.userPosition,
+              lat : position.coords.latitude,
+              lng : position.coords.longitude
+          }
+      })
+  }
+
+  searchNearbyHotels(){
+    this.getUserLocation()
+  }
+
+
 }
 
 

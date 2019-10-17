@@ -3,7 +3,6 @@
 }
 
 .section_container{
-    width: fit-content;
     padding: 20px;
     border-radius: 5px;
 }
@@ -21,3 +20,14 @@
     right: 5%;
 }
 
+
+.flex_aligne_row{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+.star_picker{
+    width: 250px;
+}

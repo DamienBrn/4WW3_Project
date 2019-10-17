@@ -8541,6 +8541,11 @@ react-app-polyfill@^1.0.3:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
+react-circular-progressbar@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-2.0.2.tgz#8fa5fc4cb5e07dfe4036ade8695ba125742f4de4"
+  integrity sha512-o0xpWnW53LAOmyvk3HpzxcUbysYpOVZJ9sm3kHTLBd10Mryev42eq2Q1UjayaBPkvNHtlcbtjDm4xOCI/4WxQQ==
+
 react-datepicker@^2.9.6:
   version "2.9.6"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-2.9.6.tgz#26190c9f71692149d0d163398aa19e08626444b1"

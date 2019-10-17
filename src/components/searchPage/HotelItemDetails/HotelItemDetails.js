@@ -12,8 +12,8 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookIcon from '@material-ui/icons/Book';
 import Rating from '@material-ui/lab/Rating';
+import MapResults from '../MapResults/MapResults'
 import MapSingleItem from '../MapSingleItem/MapSingleItem'
-
 
 export default class HotelItemDetails extends React.Component{
 

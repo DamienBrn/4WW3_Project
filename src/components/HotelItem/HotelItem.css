@@ -5,10 +5,14 @@
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-    margin-top: 10px;
-    color: #ffffff;
+    color: #000000;
     font-size: 28px;
     z-index: 2;
+    background-color: #ffffff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 60px;
+    line-height: 60px;
 }
 
 .hotel_thumbnail_footer{
@@ -17,7 +21,33 @@
     bottom: 0;
     text-align: center;
     color: #ffffff;
-    padding-bottom: 18px;
     font-size: 20px;
     z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #ffffff;
+    color: #000000;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+.thumbnail_avg_rating{
+    height: 50px;
+    width: 50px;
+}
+
+
+.avg_circle{
+
+}
+
+
+
+.main_container{
+    box-shadow: 2px 3px 5px 0px rgb(0, 0, 0);
+    border-radius: 5px;
 }
