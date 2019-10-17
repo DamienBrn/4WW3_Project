@@ -33,7 +33,7 @@ export default class SubmitItem extends React.Component{
 
                     <fieldset>
                         <legend><GeneralIcon/>  General</legend>
-                        <div className="section_container flex_aligne_row">
+                        <div className="section_container flex_align_row">
                             <TextField
                                 required
                                 name="propertyName"
@@ -135,104 +135,107 @@ export default class SubmitItem extends React.Component{
                     <fieldset>
                         <legend><LocationCityIcon/>  Locate your property</legend>
                             <div className="location_inputs section_container">
+                                <div className="flex_align_row">
+                                    <TextField
+                                        required
+                                        name="address"
+                                        id="property_address"
+                                        label="Address"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={(event)=>this.handleChange(event)}
+                                    />
+                                    <TextField
+                                        name="addressSecond"
+                                        id="property_address_2"
+                                        label="Address 2"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={(event)=>this.handleChange(event)}
+                                    />
 
-                                <TextField
-                                    required
-                                    name="address"
-                                    id="property_address"
-                                    label="Address"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={(event)=>this.handleChange(event)}
-                                />
+                                    <TextField
+                                        required
+                                        name="zipCode"
+                                        id="property_zipcode"
+                                        label="Zip Code"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={(event)=>this.handleChange(event)}
+                                    />
+                                </div>
 
-                                <TextField
-                                    name="addressSecond"
-                                    id="property_address_2"
-                                    label="Address 2"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={(event)=>this.handleChange(event)}
-                                />
-
-                                <TextField
-                                    required
-                                    name="zipCode"
-                                    id="property_zipcode"
-                                    label="Zip Code"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={(event)=>this.handleChange(event)}
-                                />
-
-                                <div>
+                                <div className="flex_align_row">
                             
-                                <TextField
-                                    required
-                                    name="country"
-                                    id="property_country"
-                                    label="Country"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={(event)=>this.handleChange(event)}
-                                />
+                                    <TextField
+                                        required
+                                        name="country"
+                                        id="property_country"
+                                        label="Country"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={(event)=>this.handleChange(event)}
+                                    />
 
-                                <TextField
-                                    required
-                                    name="region"
-                                    id="property_state"
-                                    label="State / Province / Region"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={(event)=>this.handleChange(event)}
-                                />
+                                    <TextField
+                                        required
+                                        name="region"
+                                        id="property_state"
+                                        label="State / Province / Region"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={(event)=>this.handleChange(event)}
+                                    />
 
-                                <TextField
-                                    required
-                                    name="city"
-                                    id="property_city"
-                                    label="City"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={(event)=>this.handleChange(event)}
-                                />
+                                    <TextField
+                                        required
+                                        name="city"
+                                        id="property_city"
+                                        label="City"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={(event)=>this.handleChange(event)}
+                                    />
 
-                            </div>
+                                </div>
 
                             <div>
-                                <h3>Click on the map to locate your property :</h3>
+                                <h3>Click on the map to locate your property...</h3>
                                 <div className="map_i_container">
                                     <MapInteractive handleClickOnMap={this.handleClickOnMap} selectedPosition={this.state.selectedPosition}/>
                                 </div>
                                 
-                                <TextField
-                                    required
-                                    name="lat"
-                                    id="lat"
-                                    label="Latitude"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    value={this.state.selectedPosition.lat}
-                                    onChange={(event)=>this.handleLocationChange(event.target.value, 'lat')}
-                                />
-                                <TextField
-                                    required
-                                    name="lng"
-                                    id="lng"
-                                    label="Longitude"
-                                    className="spaced_element"
-                                    margin="normal"
-                                    variant="outlined"
-                                    value={this.state.selectedPosition.lng}
-                                    onChange={(event)=>this.handleLocationChange(event.target.value, 'lng')}
-                                />
+                                <h3>...or enter the values manually</h3>
+                                <div className="flex_align_row">
+                                    <TextField
+                                        required
+                                        name="lat"
+                                        id="lat"
+                                        label="Latitude"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        value={this.state.selectedPosition.lat}
+                                        onChange={(event)=>this.handleLocationChange(event.target.value, 'lat')}
+                                    />
+                                    <TextField
+                                        required
+                                        name="lng"
+                                        id="lng"
+                                        label="Longitude"
+                                        className="spaced_element"
+                                        margin="normal"
+                                        variant="outlined"
+                                        value={this.state.selectedPosition.lng}
+                                        onChange={(event)=>this.handleLocationChange(event.target.value, 'lng')}
+                                    />
+                                </div>
                             </div>
 
                         </div>
@@ -241,7 +244,7 @@ export default class SubmitItem extends React.Component{
 
                     <fieldset>
                         <legend><DescriptionIcon/>  Details</legend>
-                        <div className="section_container flex_aligne_row">
+                        <div className="section_container flex_align_row">
                             <TextField
                                 required
                                 name="services"

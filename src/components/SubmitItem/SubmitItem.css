@@ -21,7 +21,7 @@
 }
 
 
-.flex_aligne_row{
+.flex_align_row{
     display: flex;
     flex-direction: row;
     align-items: baseline;

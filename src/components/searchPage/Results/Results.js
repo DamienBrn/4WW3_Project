@@ -38,15 +38,15 @@ export default class Results extends React.Component{
                 <div className="horizontal_bar_options">
 
                     <FormControl>
-                        <InputLabel htmlFor="price_sort_helper">Price</InputLabel>
+                        <InputLabel htmlFor="priceSort">Price</InputLabel>
                         <Select
-                            value={'low'}
+                            value={this.state.priceSort}
                             displayEmpty
-                            name="age"
                             inputProps={{
-                            name: 'price_sort',
-                            id: 'price_sort_helper',
+                                name: 'priceSort',
+                                id: 'priceSort',
                             }}
+                            onChange={(event)=>this.handleChange(event)}
                         >
                             <MenuItem value="">
                             <em>None</em>
@@ -57,42 +57,40 @@ export default class Results extends React.Component{
                     </FormControl>
 
                     <FormControl>
-                        <InputLabel htmlFor="rating_helper">Rating</InputLabel>
+                        <InputLabel htmlFor="ratingSort">Rating</InputLabel>
                         <Select
-                            value={30}
+                            value={this.state.ratingSort}
                             displayEmpty
-                            name="rating"
                             inputProps={{
-                            name: 'rating',
-                            id: 'rating_helper',
+                                name: 'ratingSort',
+                                id: 'ratingSort',
                             }}
+                            onChange={(event)=>this.handleChange(event)}
                         >
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={'low'}>Low first</MenuItem>
+                            <MenuItem value={'first'}>High first</MenuItem>
                         </Select>
                     </FormControl>
 
                     <FormControl>
-                        <InputLabel htmlFor="stars_helper">Stars</InputLabel>
+                        <InputLabel htmlFor="starsSort">Stars</InputLabel>
                         <Select
-                            value={30}
+                            value={this.state.starsSort}
                             displayEmpty
-                            name="stars"
                             inputProps={{
-                            name: 'stars',
-                            id: 'stars_helper',
+                                name: 'starsSort',
+                                id: 'starsSort',
                             }}
+                            onChange={(event)=>this.handleChange(event)}
                         >
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={'low'}>Low first</MenuItem>
+                            <MenuItem value={'first'}>High first</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -132,4 +130,23 @@ export default class Results extends React.Component{
 
         )
     }
+
+
+    constructor(props){
+        super(props)
+        this.state = {
+            priceSort : '',
+            ratingSort : '',
+            starsSort : ''
+        }
+    }
+
+
+    handleChange(event){
+        this.setState({
+            ...this.state,
+            [event.target.name]: event.target.value
+        })
+    }
+
 }

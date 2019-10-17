@@ -52,7 +52,7 @@ class MapResults extends React.Component{
                 <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
                     <div>
                         <h3  onClick={()=>this.test()}>{this.state.selectedPlace.name}</h3>
-                        <div className="see_details" onClick={()=>this.test()}>
+                        <div className="see_details">
                             See details
                         </div>
                     </div>
@@ -77,11 +77,19 @@ class MapResults extends React.Component{
     }
 
     onMarkerClick(props, marker, e){
+        
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
           });
+
+          setTimeout(()=>{
+            let linkDetails = document.getElementsByClassName('see_details')[0]
+            linkDetails.addEventListener("click", ()=>{
+              this.props.showDetails()
+            });
+          }, 0)
     }
 
     test(){
