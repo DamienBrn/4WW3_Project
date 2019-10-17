@@ -19,6 +19,7 @@ import {
 } from '@material-ui/icons'
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import Rating from '@material-ui/lab/Rating';
+import MapInteractive from '../MapInteractive/MapInteractive'
 
 
 export default class SubmitItem extends React.Component{
@@ -204,6 +205,36 @@ export default class SubmitItem extends React.Component{
 
                             </div>
 
+                            <div>
+                                <h3>Click on the map to locate your property :</h3>
+                                <div className="map_i_container">
+                                    <MapInteractive handleClickOnMap={this.handleClickOnMap} selectedPosition={this.state.selectedPosition}/>
+                                </div>
+                                
+                                <TextField
+                                    required
+                                    name="lat"
+                                    id="lat"
+                                    label="Latitude"
+                                    className="spaced_element"
+                                    margin="normal"
+                                    variant="outlined"
+                                    value={this.state.selectedPosition.lat}
+                                    onChange={(event)=>this.handleLocationChange(event.target.value, 'lat')}
+                                />
+                                <TextField
+                                    required
+                                    name="lng"
+                                    id="lng"
+                                    label="Longitude"
+                                    className="spaced_element"
+                                    margin="normal"
+                                    variant="outlined"
+                                    value={this.state.selectedPosition.lng}
+                                    onChange={(event)=>this.handleLocationChange(event.target.value, 'lng')}
+                                />
+                            </div>
+
                         </div>
                     </fieldset>
 
@@ -298,6 +329,10 @@ export default class SubmitItem extends React.Component{
             country : '',
             region : '',
             city : '',
+            selectedPosition : {
+                lat : 0,
+                lng : 0
+            },
             services : '',
             facilities : '',
             numberOfRooms : '',
@@ -369,7 +404,6 @@ export default class SubmitItem extends React.Component{
         }
     }
 
-
     handleSubmit=(event)=>{
         let nbErrorState = 0
 
@@ -387,7 +421,6 @@ export default class SubmitItem extends React.Component{
                 errorMessage : ''
             })
             alert("Success ! ")
-            console.log(this.state)
         }
         event.preventDefault();
       }
@@ -398,5 +431,27 @@ export default class SubmitItem extends React.Component{
             errorMessage : '*Please enter correct values.'
         })
       }
+
+      handleClickOnMap=(location, map)=>{
+        this.setState({
+            ...this.state,
+            selectedPosition : {
+                ...this.state.selectedPosition,
+                lat :  location.lat(),
+                lng : location.lng()
+            }
+        })
+        map.panTo(location);
+    }
+
+    handleLocationChange(value, key){
+        this.setState({
+            ...this.state,
+            selectedPosition:{
+                ...this.state.selectedPosition,
+                [key] : value
+            }
+        })
+    }
 
 }

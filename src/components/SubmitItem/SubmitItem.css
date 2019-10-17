@@ -31,3 +31,9 @@
 .star_picker{
     width: 250px;
 }
+
+.map_i_container{
+    position: relative;
+    height: 300px;
+    width: auto;
+}
