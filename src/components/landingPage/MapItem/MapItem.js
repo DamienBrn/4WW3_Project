@@ -1,6 +1,6 @@
 import React from 'react'
 import './MapItem.css'
-import GoogleMap, { Map,GoogleApiWrapper, Marker} from 'google-maps-react';
+import { Map,GoogleApiWrapper, Marker} from 'google-maps-react';
 
 
 class MapItem extends React.Component{
@@ -14,13 +14,18 @@ class MapItem extends React.Component{
 
                     <div className="map_container">
                         <Map
+                            isMarkerShown
                             google={this.props.google}
                             zoom={8}
                             className="map"
-                            initialCenter={this.state.userPosition}
+                            center={this.state.userPosition}
                         >
-                            <Marker/>
-
+                             <Marker 
+                                position={{
+                                        lat :this.state.userPosition.lat,
+                                        lng : this.state.userPosition.lng
+                                    }}
+                            />
                         </Map>
                     </div>
                 </div>
@@ -31,22 +36,26 @@ class MapItem extends React.Component{
         super(props)
         this.state = {
             userPosition : {
-                lat : 43.2634377,
-                lng : -79.9289439
+                lat : 0,
+                lng : 0
             }
         }
     }
 
+    //We get the user's location when the landing page is loaded
     componentDidMount(){
         this.getUserLocation()
     }
 
+    //We get the current posistion of the user
     getUserLocation() {
         if (navigator.geolocation) {
+            //if successful, we call the callback "showUserPosition"
             navigator.geolocation.getCurrentPosition((position)=>this.showUserPosition(position));
         }
     }
 
+    //We update the state with the new values
     showUserPosition(position){
         this.setState({
             ...this.state,
@@ -59,6 +68,7 @@ class MapItem extends React.Component{
     }
 }
 
+//We specify our Api key and wrap it around our component
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyBzIYx2VVzDdL7GWsKkYupI6QDs1GB3WGA'
   })(MapItem);

@@ -54,7 +54,6 @@ export default class SubmitItem extends React.Component{
                                     labelWidth={500}
                                     value={this.state.numberOfStars}
                                     onChange={(event)=>this.handleChange(event)}
-                                    labelWidth={50}
                                     inputProps={{
                                         name: 'numberOfStars',
                                         id: 'numberOfStars',
@@ -275,6 +274,7 @@ export default class SubmitItem extends React.Component{
                                 margin="normal"
                                 variant="outlined"
                                 type="number"
+                                inputProps={{ min: "0"}} 
                                 onChange={(event)=>this.handleChange(event)}
                             />
                         </div>
@@ -351,12 +351,14 @@ export default class SubmitItem extends React.Component{
         };
     }
 
+    //Closes the window for dropping files
     handleClose() {
         this.setState({
             open: false
         });
     }
 
+    //Saves imported files to the state
     handleSave(files) {
         this.setState({
             ...this.state,
@@ -365,12 +367,14 @@ export default class SubmitItem extends React.Component{
         });
     }
 
+    //Controls the window for dropping files
     handleOpen() {
         this.setState({
             open: true,
         });
     }
 
+    //General method to handle the changes to an input value
     handleChange(event){
         this.setState({
             ...this.state,
@@ -378,15 +382,18 @@ export default class SubmitItem extends React.Component{
         })
     }
 
+    //We check the values for the inputs that needs a specific syntax for their values (only 3 in our case)
     handleInputChangeCheck(event){
         let name = event.target.name
         let value = event.target.value
-        let regex = /\S+@\S+\.\S+/;
+        let regex = /\S+@\S+\.\S+/; //we initiate the regex for the email (as the user will logically fill out inputs in the display order)
 
+        //If the name of the event is "phone" or "altPhone" we set the regex for the phone numbers
         if(name === "phone" || name === "altPhone"){
-            regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
+            regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/
         }
 
+        //if the regex is validated we update the new values into the state and set the errorState of the input to false
         if(regex.test(value)){
             this.setState({
                 ...this.state,
@@ -396,6 +403,7 @@ export default class SubmitItem extends React.Component{
                     [name] : false
                 }
             })
+        //if the regex is not validated, we set the errorState of the input to true
         }else{
             this.setState({
                 ...this.state,
@@ -409,13 +417,14 @@ export default class SubmitItem extends React.Component{
 
     handleSubmit=(event)=>{
         let nbErrorState = 0
-
+        //We check if one of the input is in the error state
         for(let element in this.state.errorState){
             if(this.state.errorState[element]){
                 nbErrorState++
             }
         }
 
+        //We one or more inputs or in the error state, we display an error message and prevent the user from submitting
         if(nbErrorState > 0){
             this.displayErrorMessage()
         }else{
@@ -428,6 +437,8 @@ export default class SubmitItem extends React.Component{
         event.preventDefault();
       }
 
+
+      //We update the state to display an error message
       displayErrorMessage(){
         this.setState({
             ...this.state,
@@ -435,18 +446,21 @@ export default class SubmitItem extends React.Component{
         })
       }
 
+
+      //When we click on the map, we get the location of the click and map component to update the position and the view
       handleClickOnMap=(location, map)=>{
         this.setState({
             ...this.state,
             selectedPosition : {
                 ...this.state.selectedPosition,
-                lat :  location.lat(),
-                lng : location.lng()
+                lat :  location.lat(),// We get the latitude from the clicked position
+                lng : location.lng()// We get the longitude from the clicked position
             }
         })
-        map.panTo(location);
+        map.panTo(location); //We center the view on the clicked position
     }
 
+    //We update the state with the new latitude and longitude
     handleLocationChange(value, key){
         this.setState({
             ...this.state,

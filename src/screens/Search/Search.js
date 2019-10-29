@@ -3,7 +3,7 @@ import './Search.css'
 import SearchForm from '../../components/searchPage/Form/SearchForm/SearchForm'
 import  Results from '../../components/searchPage/Results/Results'
 import HotelDetails from '../HotelDetails/HotelDetails'
-import {withRouter, useParams} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 class Search extends React.Component{
 

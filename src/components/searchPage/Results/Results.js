@@ -8,16 +8,9 @@ import {
     MenuItem, 
   } from '@material-ui/core'
 
-import { Link } from 'react-router-dom'
-
 import HotelItem from '../../HotelItem/HotelItem'
-import hotel_01 from '../../../assets/images/hotel_01.jpg'
-import hotel_02 from '../../../assets/images/hotel_02.jpg'
-import hotel_03 from '../../../assets/images/hotel_03.jpg'
-import hotel_paris from '../../../assets/images/hotel_paris.jpg'
-import hotel_geneva from '../../../assets/images/hotel_geneva.jpg'
-import hotel_lisbonne from '../../../assets/images/hotel_lisbonne.jpg'
 import MapResults from '../MapResults/MapResults'
+import resultsArray from '../../../services/mockData/results'
 
 
 export default class Results extends React.Component{
@@ -97,33 +90,7 @@ export default class Results extends React.Component{
             </div>
                 
                 <div className="result_thumbnail">
-                    <div className="fit_content_width click_me" onClick={()=>this.props.showDetails()}>
-                        <HotelItem src={hotel_01} hotelName="L'Hotel" countryCode="it" cityName="Rome" rating={86} price={125} stars={4} />
-                    </div>
-                    <div className="fit_content_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem src={hotel_02} hotelName="Holliday Inn" countryCode="es" cityName="Barcelona" rating={78} price={250} stars={5}/>
-                    </div>
-                    <div className="fit_content_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem src={hotel_03} hotelName="10x Hotel" countryCode="us" cityName="Houston" rating={82} price={80} stars={3}/>
-                    </div>
-                    <div>
-                        <HotelItem src={hotel_paris} hotelName="Lafayette" countryCode="fr" cityName="Paris" rating={70} price={95} stars={3}/>
-                    </div>
-                    <div>
-                        <HotelItem src={hotel_geneva} hotelName="Four Seasons" countryCode="ch" cityName="Geneva" rating={99} price={500} stars={5}/>
-                    </div>
-                    <div>
-                        <HotelItem src={hotel_lisbonne} hotelName="PortoBay" countryCode="pt" cityName="Lisbon" rating={60} price={50} stars={2}/>
-                    </div>
-                    <div className="fit_content_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem hotelName="hotel_sample"/>
-                    </div>
-                    <div className="fit_content_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem hotelName="hotel_sample"/>
-                    </div>
-                    <div className="fit_content_width" onClick={()=>this.props.showDetails()}>
-                        <HotelItem hotelName="hotel_sample"/>
-                    </div>
+                    {this.state.results}
                 </div>
 
           </div>
@@ -131,21 +98,38 @@ export default class Results extends React.Component{
         )
     }
 
-
     constructor(props){
         super(props)
         this.state = {
             priceSort : '',
             ratingSort : '',
-            starsSort : ''
+            starsSort : '',
+            results : []
         }
     }
 
+    componentDidMount(){
+        this.displayResults(resultsArray)
+    }
 
     handleChange(event){
         this.setState({
             ...this.state,
             [event.target.name]: event.target.value
+        })
+    }
+
+    displayResults(resultsArray){
+        this.setState({
+            ...this.state,
+            results :   
+                resultsArray.map(item => {
+                    return (
+                        <div className="fit_content_width click_me" onClick={()=>this.props.showDetails(item.id)}>
+                            <HotelItem id={item.id} key={item.key} value={item.name} src={item.src} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
+                        </div>
+                    )
+            })
         })
     }
 

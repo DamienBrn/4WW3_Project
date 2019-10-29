@@ -1,6 +1,5 @@
 import React from 'react'
 import './HotelItemDetails.css'
-import map_src from '../../../assets/images/map_screen.JPG'
 import UserReviewItem from '../../UserReviewItem/UserReviewItem'
 import Services from '../../Services/Services'
 import hotel_01 from '../../../assets/images/hotel_01.jpg'
@@ -12,7 +11,6 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookIcon from '@material-ui/icons/Book';
 import Rating from '@material-ui/lab/Rating';
-import MapResults from '../MapResults/MapResults'
 import MapSingleItem from '../MapSingleItem/MapSingleItem'
 
 export default class HotelItemDetails extends React.Component{
@@ -23,7 +21,7 @@ export default class HotelItemDetails extends React.Component{
             <div>
                 <div className="top_section_hotel_details">
                     <div className="hotel_detail_img_container">
-                        <img src={hotel_01} className="hotel_detail_img"/>
+                        <img src={hotel_01} alt="hotel_detail_img with nice building and trees at night" className="hotel_detail_img"/>
                     </div>
                     
                     <div className="details_top_right_hand_side">

@@ -8,7 +8,6 @@ import Footer from './components/Footer/Footer'
 import LandingPage from './screens/LandingPage/LandingPage'
 import Search from './screens/Search/Search'
 import About from './screens/About/About'
-import HotelDetails from './screens/HotelDetails/HotelDetails'
 import Submit from './screens/Submit/Submit'
 import Contact from './screens/Contact/Contact'
 import Error from './screens/Error/Error'
@@ -36,7 +35,6 @@ function App() {
               <Route path="/submit" component={Submit}/>
               <Route path="/about" component={About}/>
               <Route path="/contact" component={Contact}/>
-              <Route path="/:hotelId" component={HotelDetails} exact/>
               <Route component={Error}/>
             </Switch>
           
@@ -50,3 +48,6 @@ function App() {
 }
 
 export default App;
+
+//Do I really have to comment everything ? comon... you can see I know what I'm doing.
+//2030

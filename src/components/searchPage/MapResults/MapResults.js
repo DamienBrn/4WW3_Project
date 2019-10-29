@@ -6,9 +6,6 @@ class MapResults extends React.Component{
     render(){
         return(
             <div>
-
-
-
                 <Map
                     isMarkerShown
                     google={this.props.google}
@@ -17,13 +14,13 @@ class MapResults extends React.Component{
                     className="map"
                 > 
                 <Marker 
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)}
+                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)}
                     name={'L\'Hotel Rome'}
                     position={{lat: 41.902782, lng: 12.496365}}
                 />
 
                 <Marker
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)}
+                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)}
                     name={'Holliday Inn Barcelona'}
                     position={{lat: 41.385063, lng: 2.173404}} 
                 />
@@ -31,22 +28,22 @@ class MapResults extends React.Component{
                 <Marker
                     name={'10X Hotel Houston'}
                     position={{lat: 29.760427, lng: -95.369804}}
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)} 
+                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)} 
                 />
                 <Marker
                     name={'Lafayette Paris'}
                     position={{lat: 48.856613, lng: 2.352222}}
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)} 
+                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)} 
                 />
                 <Marker
                     name={'Four Seasons Geneva'}
                     position={{lat: 46.204391, lng: 6.143158}}
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)} 
+                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)} 
                 />
                 <Marker
                     name={'Porto Bay Lisbon'}
                     position={{lat: 38.722252, lng: -9.139337}}
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)} 
+                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)} 
                 />
 
                 <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
@@ -76,28 +73,26 @@ class MapResults extends React.Component{
         }
     }
 
-    onMarkerClick(props, marker, e){
+    onMarkerClick(props, marker){
         
+        //When we click on a marker we open the infoWindow
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
           });
 
-          setTimeout(()=>{
+          setTimeout(()=>{ //We set a timeout to 0 so the div has the time to appear and then we can get it and add a listener.
+            //When a setTimeOut is set to 0, we still delay the execution of the wrapped code because it puts the wrapped code into the api and the queue handled by the browser
             let linkDetails = document.getElementsByClassName('see_details')[0]
             linkDetails.addEventListener("click", ()=>{
               this.props.showDetails()
             });
           }, 0)
     }
-
-    test(){
-        console.log('ilo')
-    }
-
 }
 
+//We specify our Api key and we wrap it around our component
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyBzIYx2VVzDdL7GWsKkYupI6QDs1GB3WGA'
   })(MapResults);

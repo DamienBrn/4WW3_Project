@@ -13,7 +13,7 @@ import {
     DialogTitle, 
     FormControlLabel
 } from '@material-ui/core'
-import { Close as CloseIcon, PersonAdd as SignupIcon, Help as HelpIcon } from '@material-ui/icons'
+import { Close as CloseIcon, PersonAdd as SignupIcon} from '@material-ui/icons'
 
 import PasswordHelpPopover from './PasswordHelpPopover/PasswordHelpPopover'
 
@@ -135,6 +135,7 @@ export default class SignupForm extends React.Component{
         }
     }
 
+    //We update the state when a checkbox is clicked
     handleCheckBoxClick(key){
         this.setState({
             ...this.state,
@@ -145,7 +146,7 @@ export default class SignupForm extends React.Component{
         })
     }
 
-
+    //We check the email with a regex everytime it changes
     handleEmailChange(email){
         let regex = /\S+@\S+\.\S+/;
         if(regex.test(email)){
@@ -168,8 +169,9 @@ export default class SignupForm extends React.Component{
         }
     }
 
+    //We check the password with a regex everytime it changes
     handlePasswordChange(password){
-        let regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.\,\;\,])(?=.{8,})/
+        let regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.,;,])(?=.{8,})/
 
         if(regex.test(password)){
             this.setState({
@@ -193,6 +195,7 @@ export default class SignupForm extends React.Component{
         }
     }
 
+    //We check if the password is correct (if it's not in the error state) and submit the form
     handleSubmit=(event)=>{
         if(this.state.errorState.password === false){
             alert("Congratulations ! You are now registered");
@@ -202,6 +205,7 @@ export default class SignupForm extends React.Component{
         event.preventDefault();
       }
 
+      //We update the state to display an error message when the password does not match the regex
       displayErrorMessage(){
         this.setState({
             ...this.state,

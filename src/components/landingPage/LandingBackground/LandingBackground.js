@@ -41,11 +41,13 @@ export default class LandingBackground extends React.Component{
         this.initListenerForSmoothScroll()
     }
 
+    //We set an event listener for the "Scroll icon" on the landing page to create a smooth scroll when the user clicks on it
     initListenerForSmoothScroll(){
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {//We select all the anchors of the page (only one in our case)
+            anchor.addEventListener('click', function (e) { //We add a listener for each one of them
+                e.preventDefault(); //We prevent the default scroll behavior from triggering
         
+                //We scroll the selected element into view and we apply a smooth behavior to it
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });

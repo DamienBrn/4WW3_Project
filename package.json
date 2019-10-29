@@ -12,10 +12,16 @@
     "@material-ui/lab": "^4.0.0-alpha.27",
     "@material-ui/pickers": "^3.2.6",
     "@react-google-maps/api": "^1.7.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "date-fns": "^2.0.0-beta.5",
+    "express": "^4.17.1",
     "google-maps-react": "^2.0.2",
     "material-ui": "^0.20.2",
     "material-ui-dropzone": "^2.4.1",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.6",
+    "nodemon": "^1.19.4",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-circular-progressbar": "^2.0.2",
@@ -31,7 +37,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "nodemon server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

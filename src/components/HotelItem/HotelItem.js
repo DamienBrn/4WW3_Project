@@ -65,19 +65,22 @@ export default class HotelItem extends React.Component {
   }
 
 
+  //We update the color of the circle based on the percentage
   changeColorBasedonPercentage(percentage){
-    let r, g, b = 0;
-    if(percentage < 50) {
+    let r, g, b = 0 //We set each channel to 0
+    let hue
+    if(percentage < 50) { //If the percentage is less than 50%, we set the red to max and update multiply the green channel by a color index, to create a "gradient" from red to orange/yellow
       r = 255;
-      g = Math.round(5.1 * percentage);
+      g = Math.round(5.1 * percentage)
     }
-    else {
+    else { // Same as above but we reverse the channels
       g = 255;
-      r = Math.round(510 - 5.10 * percentage);
+      r = Math.round(510 - 5.10 * percentage)
     }
-    let h = r * 0x10000 + g * 0x100 + b * 0x1;
+    hue = r * 0x10000 + g * 0x100 + b * 0x1 // We calculate the hue by multiplying each channel by an hexadecimal index to specify the strongest colors in the gradients
 
-    return '#' + ('000000' + h.toString(16)).slice(-6);
+    //We convert the value of the hue an hexadecimal value the css can understand
+    return '#' + ('000000' + hue.toString(16)).slice(-6)
   }
 
 
