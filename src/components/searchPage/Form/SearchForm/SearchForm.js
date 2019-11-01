@@ -20,6 +20,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import Rating from '@material-ui/lab/Rating';
+import api from '../../../../services/api'
 
 
 export default class SearchForm extends React.Component{
@@ -29,7 +30,7 @@ export default class SearchForm extends React.Component{
 
               <div className="search_layout_container">
 
-                <form className="search_form" onSubmit={(event)=>this.handleSubmit(event)}>
+                <form className="search_form" onSubmit={(event) => this.handleSubmit(event)}>
 
                   <Button variant="contained" color="primary" className="spaced_element" onClick={()=>this.searchNearbyHotels()}>
                         Nearby hotels
@@ -42,6 +43,7 @@ export default class SearchForm extends React.Component{
 
                     <TextField
                       id="outlined-name"
+                      name="destinationProperty"
                       label="Destination / Property"
                       className="spaced_element"
                       margin="normal"
@@ -307,10 +309,12 @@ export default class SearchForm extends React.Component{
     this.getUserLocation()
   }
 
-  handleSubmit=(event)=>{
-    //TODO
-    //call the dispatcher that will format the data (pass the state as a parameter)
+  handleSubmit = async(event)=>{
     event.preventDefault();
+    console.log(this.state.destinationProperty)
+    await api.getHotelByName(this.state.destinationProperty).then(hotels => {
+     this.props.updateResultList(hotels.data) 
+    })
   }
 
 }

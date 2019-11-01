@@ -1,16 +1,14 @@
 import React from 'react'
 import './Results.css'
-
 import {  
     Select, 
     InputLabel, 
     FormControl, 
-    MenuItem, 
+    MenuItem,
+    CircularProgress 
   } from '@material-ui/core'
-
 import HotelItem from '../../HotelItem/HotelItem'
 import MapResults from '../MapResults/MapResults'
-import resultsArray from '../../../services/mockData/results'
 
 
 export default class Results extends React.Component{
@@ -90,9 +88,8 @@ export default class Results extends React.Component{
             </div>
                 
                 <div className="result_thumbnail">
-                    {this.state.results}
+                    {this.displayResults(this.props.results)}
                 </div>
-
           </div>
 
         )
@@ -104,14 +101,10 @@ export default class Results extends React.Component{
             priceSort : '',
             ratingSort : '',
             starsSort : '',
-            results : []
         }
     }
 
-    componentDidMount(){
-        this.displayResults(resultsArray)
-    }
-
+ 
     handleChange(event){
         this.setState({
             ...this.state,
@@ -119,18 +112,25 @@ export default class Results extends React.Component{
         })
     }
 
-    displayResults(resultsArray){
-        this.setState({
-            ...this.state,
-            results :   
-                resultsArray.map(item => {
-                    return (
-                        <div className="fit_content_width click_me" onClick={()=>this.props.showDetails(item.id)}>
-                            <HotelItem id={item.id} key={item.key} value={item.name} src={item.src} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
-                        </div>
-                    )
-            })
-        })
-    }
 
+    displayResults(resultsArray){
+        let resultsFound = []
+        if(this.props.isLoading === true){
+            return <CircularProgress className="activity_indicator"/>
+        }else if(resultsArray.length != 0){
+            resultsFound = resultsArray.map(item => {
+                return (
+                    <div key={item._id} className="fit_content_width click_me" onClick={()=>this.props.showDetails(item.id)}>
+                        <HotelItem id={item._id} key={item._id} value={item.name} src={item.src} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
+                    </div>
+                )
+            })
+        }
+        
+        if(resultsFound.length === 0){
+            resultsFound = <div><h3>No results found for this search<br/>Try again</h3></div>
+        }   
+
+        return resultsFound
+    }
 }

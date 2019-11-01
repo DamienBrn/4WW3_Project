@@ -52,6 +52,9 @@ let results =
         avgPrice : 95,
         stars : 3
      },
+
+
+     
      {
         id : 5,
         key : "Four Seasons_Geneva",

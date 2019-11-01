@@ -20,6 +20,8 @@ import './utils/styles/thumbnails.css'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 
+// import './services/server'
+
 function App() {
   return (
     <div className="App">
