@@ -1,20 +1,20 @@
 import React from 'react';
 
 //import the header and the footer which will be present on every page
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
+import Header from './frontend/components/Header/Header'
+import Footer from './frontend/components/Footer/Footer'
 
 //import components for the router
-import LandingPage from './screens/LandingPage/LandingPage'
-import Search from './screens/Search/Search'
-import About from './screens/About/About'
-import Submit from './screens/Submit/Submit'
-import Contact from './screens/Contact/Contact'
-import Error from './screens/Error/Error'
+import LandingPage from './frontend/screens/LandingPage/LandingPage'
+import Search from './frontend/screens/Search/Search'
+import About from './frontend/screens/About/About'
+import Submit from './frontend/screens/Submit/Submit'
+import Contact from './frontend/screens/Contact/Contact'
+import Error from './frontend/screens/Error/Error'
 
 //import styles common to multiple elements throughout the website
-import './utils/styles/styles.css'
-import './utils/styles/thumbnails.css'
+import './frontend/utils/styles/styles.css'
+import './frontend/utils/styles/thumbnails.css'
 
 //react-router -> librairy for routing
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
