@@ -9,13 +9,13 @@ class MapSingleItem extends React.Component{
                     isMarkerShown
                     google={this.props.google}
                     zoom={5}
-                    initialCenter={{lat: 41.902782, lng: 12.496365}}
+                    initialCenter={{lat: this.state.lat, lng: this.state.lng}}
                     className="map"
                 > 
                 <Marker 
                     onClick={(props, marker, e)=>this.onMarkerClick(props, marker, e)}
                     name={'Rome'}
-                    position={{lat: 41.902782, lng: 12.496365}}
+                    position={{lat: this.state.lat, lng: this.state.lng}}
                 />
 
                 <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
@@ -32,14 +32,22 @@ class MapSingleItem extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            userPosition : {
-                lat : 41.889980,
-                lng : 12.494260
-            },
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
+            lat : 0,
+            lng : 0
         }
+    }
+
+    componentDidMount(){
+        setTimeout(()=>{
+            this.setState({
+                ...this.state,
+                lat : this.props.lat,
+                lng : this.props.lng
+            })
+        }, 0)
     }
 
     onMarkerClick(props, marker, e){
@@ -49,7 +57,6 @@ class MapSingleItem extends React.Component{
             showingInfoWindow: true
           });
     }
-
 }
 
 export default GoogleApiWrapper({

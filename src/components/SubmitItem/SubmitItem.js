@@ -306,7 +306,7 @@ export default class SubmitItem extends React.Component{
 
                     <Button type="submit" variant="contained" color="primary" className="spaced_element arrow_submit_button">
                       Continue
-                      <ArrowForwardOutlinedIcon className="arrow_submit_icon"/>
+                      <ArrowForwardOutlinedIcon className="icon_right"/>
                     </Button>
 
 

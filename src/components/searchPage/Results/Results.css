@@ -65,3 +65,12 @@
     right: 0;
     margin: auto;
 }
+
+
+.no_results_message{
+    top: 40%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

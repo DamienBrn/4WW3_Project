@@ -11,12 +11,12 @@ class Search extends React.Component{
     render(){
         return(
             <div className="safe_view full_view display_flex_inline">
-                <SearchForm updateResultList={this.updateResultList}/>
+                <SearchForm loadHotels={this.loadHotels} updateResultList={this.updateResultList}/>
 
                 <div className="right_hand_side">
                     {!this.state.showDetails && <Results results={this.state.results} isLoading={this.state.isLoading} showDetails={this.showDetails}/>}  
 
-                    {this.state.showDetails && <HotelDetails id={this.state.hotelId} />}
+                    {this.state.showDetails && <HotelDetails hotelId={this.state.hotelId} />}
                 </div>
 
             </div>
@@ -27,7 +27,7 @@ class Search extends React.Component{
         super(props)
         this.state = {
             showDetails : false,
-            hotelId : 1,
+            hotelId : '',
             results : [],
             isLoading : false
         }
@@ -37,12 +37,12 @@ class Search extends React.Component{
         window.scrollTo(0, 0)
         this.loadHotels()
     }
-    
+
     showDetails = (hotelId)=>{
         this.setState({
             ...this.state,
+            hotelId : hotelId,
             showDetails : true,
-            hotelId : hotelId
         })
     }
 
@@ -63,7 +63,5 @@ class Search extends React.Component{
             })
         })
       }
-
 }
-
 export default withRouter(Search)

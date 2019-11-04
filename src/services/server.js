@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const hotelRoutes = require('../hotels-ctrl')
+const userRoutes = require ('../user-ctrl')
+const reviewRoutes = require ('../review-ctrl')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -23,4 +25,7 @@ app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
 
+/*--ROUTES SETUP-*/
 app.use('/api', hotelRoutes);
+app.use('/api', userRoutes);
+app.use('/api', reviewRoutes);

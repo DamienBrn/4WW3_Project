@@ -1,0 +1,11 @@
+.heart_rating{
+    text-align: center;
+}
+
+.heart_icon{
+    color: #ff6d75 !important;
+}
+
+.heart_icon:hover{
+    color: #ff3d47;
+}

@@ -26,12 +26,14 @@ hotelRoutes.route('/hotel/:id').get(function(req, res) {
 //get hotel by Name
 hotelRoutes.route('/hotel/name/:name').get(function(req, res) {
     let name = req.params.name;
-    Hotel.find({name}, function(err, hotel) {
+    let regexpName = new RegExp("^"+ name);
+    Hotel.find({name : regexpName}, function(err, hotel) {
         res.json(hotel);
     });
   });
 
-//add new hotel
+
+  //add new hotel
 hotelRoutes.route('/hotel').post(function(req, res) {
   let hotel = new Hotel(req.body);
   console.log(req.body)
@@ -53,9 +55,18 @@ hotelRoutes.route('/hotel/:id').put(function(req, res) {
         hotel.name = req.body.name
         hotel.countryCode = req.body.countryCode
         hotel.city = req.body.city
+        hotel.address = req.body.address
+        hotel.address2 = req.body.address2
+        hotel.zipCode = req.body.zipCode
+        hotel.state = req.body.state
         hotel.avgRating = req.body.avgRating
         hotel.avgPrice = req.body.avgPrice
         hotel.stars = req.body.stars
+        hotel.lat = req.body.lat
+        hotel.lng = req.body.lng
+        hotel.description = req.body.description
+        hotel.services = req.body.services
+        hotel.reviews = req.body.reviews
     }
       hotel.save().then(hotel => {
               res.json('hotel updated!');

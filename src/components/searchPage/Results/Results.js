@@ -9,7 +9,7 @@ import {
   } from '@material-ui/core'
 import HotelItem from '../../HotelItem/HotelItem'
 import MapResults from '../MapResults/MapResults'
-
+import DomainDisabledIcon from '@material-ui/icons/DomainDisabled';
 
 export default class Results extends React.Component{
 
@@ -22,7 +22,7 @@ export default class Results extends React.Component{
             <div className="results_header">
                 <div className="map_results_container">
                     <div className="map_results">
-                        <MapResults showDetails={this.props.showDetails}/>
+                        <MapResults results={this.props.results} showDetails={this.props.showDetails}/>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@ export default class Results extends React.Component{
                             <em>None</em>
                             </MenuItem>
                             <MenuItem value={'low'}>Low first</MenuItem>
-                            <MenuItem value={'first'}>High first</MenuItem>
+                            <MenuItem value={'high'}>High first</MenuItem>
                         </Select>
                     </FormControl>
 
@@ -62,7 +62,7 @@ export default class Results extends React.Component{
                             <em>None</em>
                             </MenuItem>
                             <MenuItem value={'low'}>Low first</MenuItem>
-                            <MenuItem value={'first'}>High first</MenuItem>
+                            <MenuItem value={'high'}>High first</MenuItem>
                         </Select>
                     </FormControl>
 
@@ -81,7 +81,7 @@ export default class Results extends React.Component{
                             <em>None</em>
                             </MenuItem>
                             <MenuItem value={'low'}>Low first</MenuItem>
-                            <MenuItem value={'first'}>High first</MenuItem>
+                            <MenuItem value={'high'}>High first</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -97,6 +97,7 @@ export default class Results extends React.Component{
 
     constructor(props){
         super(props)
+
         this.state = {
             priceSort : '',
             ratingSort : '',
@@ -104,7 +105,6 @@ export default class Results extends React.Component{
         }
     }
 
- 
     handleChange(event){
         this.setState({
             ...this.state,
@@ -112,15 +112,23 @@ export default class Results extends React.Component{
         })
     }
 
-
     displayResults(resultsArray){
         let resultsFound = []
+
         if(this.props.isLoading === true){
             return <CircularProgress className="activity_indicator"/>
-        }else if(resultsArray.length != 0){
+        }else if(resultsArray.length !== 0){
+
+            if(this.state.ratingSort !== ''){
+                resultsArray = this.sortByRating(resultsArray, this.state.ratingSort)
+            }
+            if(this.state.priceSort !== ''){
+                resultsArray = this.sortByPrice(resultsArray, this.state.priceSort)
+            }
+
             resultsFound = resultsArray.map(item => {
                 return (
-                    <div key={item._id} className="fit_content_width click_me" onClick={()=>this.props.showDetails(item.id)}>
+                    <div key={item._id} className="fit_content_width click_me" onClick={()=>this.props.showDetails(item._id)}>
                         <HotelItem id={item._id} key={item._id} value={item.name} src={item.src} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
                     </div>
                 )
@@ -128,9 +136,44 @@ export default class Results extends React.Component{
         }
         
         if(resultsFound.length === 0){
-            resultsFound = <div><h3>No results found for this search<br/>Try again</h3></div>
+            resultsFound = (
+                <div className="no_results_message">
+                    <DomainDisabledIcon fontSize="large" color="primary" />
+                    <div><h3>No results found for this search<br/>Try with another name</h3></div>
+                </div>
+            )
         }   
-
         return resultsFound
     }
+
+
+/* --------------------------- Sort functions --------------------------- */
+
+    sortByRating(resultsArray, order){
+        return resultsArray.sort(this['compareRatings' + order[0].toUpperCase() + order.slice(1, order.length ) + 'First'])
+    }
+
+    compareRatingsLowFirst(h1, h2) {
+        return h1.avgRating - h2.avgRating
+    }
+    
+    compareRatingsHighFirst(h1, h2) {
+        return h2.avgRating - h1.avgRating
+    }
+
+    //-------------SORT BY PRICE------------------------
+
+    sortByPrice(resultsArray, order){
+        return resultsArray.sort(this['comparePrices' + order[0].toUpperCase() + order.slice(1, order.length ) + 'First'])
+    }
+
+    comparePricesLowFirst(h1, h2) {
+        return h1.avgPrice - h2.avgPrice
+    }
+    
+    comparePricesHighFirst(h1, h2) {
+        return h2.avgPrice - h1.avgPrice
+    }
+      
+
 }

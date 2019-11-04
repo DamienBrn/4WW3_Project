@@ -39,27 +39,26 @@ export default class UserReviewItem extends React.Component{
                             <Box component="fieldset" mb={3} borderColor="transparent">
                                 <Rating
                                 name="customized-color"
-                                value={1}
-                                precision={0.5}
-                                icon={<FavoriteIcon fontSize="inherit" className="heart_icon"/>}
+                                className="heart_icon"
+                                value={this.props.rating}
+                                icon={<FavoriteIcon fontSize="inherit"/>}
                                 readOnly
                                 />
                             </Box>
                         </div>
                         <div className="user_review_title">
-                            "Great vibe"
+                            "{this.props.title}"
                         </div>
                     </div>
 
                     <div className="review_content">
                         <p>
-                            Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                            {this.props.description}
                         </p>
                     </div>
                 </div>
 
             </div>
-
         )
     }
 

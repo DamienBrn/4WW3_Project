@@ -14,18 +14,19 @@ import {
     FormControlLabel
 } from '@material-ui/core'
 import { Close as CloseIcon, PersonAdd as SignupIcon} from '@material-ui/icons'
-
+import api from '../../services/api'
 import PasswordHelpPopover from './PasswordHelpPopover/PasswordHelpPopover'
+
 
 
 export default class SignupForm extends React.Component{
 
     render(){
         return (
-                <Dialog open={this.props.open} onClose={this.props.handleClose} onBackdropClick={this.props.handleClose}>
+                <Dialog open={this.props.open} onClose={()=>this.props.handleClose('signUpFormOpen')} onBackdropClick={()=>this.props.handleClose('signUpFormOpen')}>
                     <DialogTitle id="form-dialog-title" className="text_align_center">Sign up</DialogTitle>
 
-                    <IconButton title="close" className="close_button" onClick={this.props.handleClose}>
+                    <IconButton title="close" className="close_button" onClick={()=>this.props.handleClose('signUpFormOpen')}>
                         <CloseIcon/>
                     </IconButton>
 
@@ -82,7 +83,7 @@ export default class SignupForm extends React.Component{
 
 
                             <DialogContentText className="text_align_center already_have_account">
-                                Already have an account ? Login
+                                <div onClick={()=>{this.props.handleClose('signUpFormOpen'); this.props.handleClickOpen('loginFormOpen')}}>Already have an account ? Login</div>
                             </DialogContentText>
 
 
@@ -173,6 +174,7 @@ export default class SignupForm extends React.Component{
     handlePasswordChange(password){
         let regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.,;,])(?=.{8,})/
 
+        
         if(regex.test(password)){
             this.setState({
                 ...this.state,
@@ -196,13 +198,16 @@ export default class SignupForm extends React.Component{
     }
 
     //We check if the password is correct (if it's not in the error state) and submit the form
-    handleSubmit=(event)=>{
+    handleSubmit = async(event)=>{
         if(this.state.errorState.password === false){
-            alert("Congratulations ! You are now registered");
+            const payload = {email : this.state.email, password : this.state.password}
+            event.preventDefault();
+            await api.insertUser(payload).then((user)=>{
+                console.log('user added')
+            })
         }else{
             this.displayErrorMessage()
         }
-        event.preventDefault();
       }
 
       //We update the state to display an error message when the password does not match the regex

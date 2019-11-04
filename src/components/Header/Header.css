@@ -78,6 +78,11 @@
     margin: auto;
 }
 
+.user_profile_picture_header{
+    height: 55px !important;
+    width: 55px !important;
+    color: #686868;
+}
 
 /*----------------------RESPONSIVE---------------------------*/
 

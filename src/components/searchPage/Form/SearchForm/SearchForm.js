@@ -311,12 +311,14 @@ export default class SearchForm extends React.Component{
 
   handleSubmit = async(event)=>{
     event.preventDefault();
-    console.log(this.state.destinationProperty)
-    await api.getHotelByName(this.state.destinationProperty).then(hotels => {
-     this.props.updateResultList(hotels.data) 
-    })
+    if(this.state.destinationProperty.length === 0){
+      this.props.loadHotels()
+    }else{
+      await api.getHotelByName(this.state.destinationProperty).then(hotels => {
+      this.props.updateResultList(hotels.data) 
+      })
+    }
   }
-
 }
 
 /*-----------------------Styles imported from @material-ui for the AirBnB Slider-------------------------------*/ 

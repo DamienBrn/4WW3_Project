@@ -29,9 +29,13 @@ export default class HotelDetails extends React.PureComponent{
                 </head>
 
                 <div className="safe_view full_view">
-                    <HotelItemDetails/>
+                    <HotelItemDetails hotelId={this.props.hotelId} />
                 </div>
             </div>
         )
+    }
+
+    constructor(props){
+        super(props)
     }
 }

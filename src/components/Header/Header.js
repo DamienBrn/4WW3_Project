@@ -6,7 +6,10 @@ import { ReactComponent as Cancel } from '../../assets/icons/cancel.svg';
 import { Button } from '@material-ui/core'
 import { NavLink, withRouter } from 'react-router-dom'
 import SignupForm from '../SignupForm/SignupForm'
-
+import LoginForm from '../LoginForm/LoginForm'
+import {
+    AccountCircle as AccountCircleIcon
+}from '@material-ui/icons'
 
 
 class Header extends React.Component {
@@ -22,12 +25,15 @@ class Header extends React.Component {
                             <li><NavLink to="/submit" >Submit</NavLink></li>
                             <li><NavLink to="/about" >About</NavLink></li>
                             <li><NavLink to="/contact" >Contact</NavLink></li>
-                            <li>Login</li>
-                            <li onClick={()=>this.handleClickOpen()}>
-                                <Button variant="contained" color="primary">
-                                    Sign up
-                                </Button>
-                            </li>
+                            {localStorage.getItem('user') ? <li onClick={()=>this.logout()}>Logout</li> : <li onClick={()=>this.handleClickOpen('loginFormOpen')}>Login</li>}
+                            {localStorage.getItem('user') ? <li><AccountCircleIcon className="user_profile_picture_header"/></li> : 
+                                <li onClick={()=>this.handleClickOpen('signUpFormOpen')}>
+                                    <Button variant="contained" color="primary">
+                                        Sign up
+                                    </Button>
+                                </li>
+                            }
+                            
                         </ul>
                     </div>
 
@@ -42,7 +48,8 @@ class Header extends React.Component {
 
                 </div>
 
-                <SignupForm open={this.state.signUpFormOpen} handleClose={this.handleClose}/>
+                <SignupForm open={this.state.signUpFormOpen} handleClose={this.handleClose} handleClickOpen={this.handleClickOpen}/>
+                <LoginForm open={this.state.loginFormOpen} handleClose={this.handleClose}/>
 
             </div>
             
@@ -54,16 +61,14 @@ class Header extends React.Component {
         this.state = {
             headerState : "closed",
             signUpFormOpen : false,
+            loginFormOpen : false,
         }
     }
 
     componentDidMount(){
-
         this.initHeaderOpen()
-
         this.initEventListeners()
     }
-
 
     initHeaderOpen(){
         let header = document.getElementById("main_header")
@@ -74,18 +79,13 @@ class Header extends React.Component {
         })
     }
 
-
     initEventListeners(){
         window.addEventListener("resize", ()=>{this.updateHeaderOnResize()});
     }
 
-
-
     componentDidUpdate(){
         this.updateHeaderColorsOnUpdate()
     }
-
-
 
     chooseIconToDisplay(){
         let windowWidth = window.innerWidth
@@ -106,7 +106,6 @@ class Header extends React.Component {
             )
         }
     }
-
 
     updateHeaderColorsOnUpdate(){
         if(this.state.headerState === 'closed' && this.props.location.pathname.length === 1){
@@ -159,22 +158,21 @@ class Header extends React.Component {
         }
     }
 
-
-
-
-    handleClickOpen(){
+    handleClickOpen=(key)=>{
         this.setState({
-            signUpFormOpen : true
+            [key] : true
         })
     }
 
-    handleClose = ()=>{
+    handleClose = (key)=>{
         this.setState({
-            signUpFormOpen : false 
+            [key] : false 
         })
     }
 
-
+    logout(){
+        this.setState({...this.state})
+        localStorage.clear()
+    }
 }
- 
 export default withRouter(Header)
