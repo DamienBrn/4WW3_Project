@@ -69,4 +69,18 @@ userRoutes.route('/user/:id').put(function(req, res) {
 });
 
 
+//delete user by Id
+userRoutes.route('/user/delete/:id').put(function(req, res) {
+    let id = req.params.id;
+    User.deleteOne({ _id: id }, function(err) {
+        if (!err) {
+                res.json('User successfully deleted')
+        }
+        else {
+            res.json('Error while trying to delete user')
+        }
+    });
+  });
+
+
 module.exports = userRoutes

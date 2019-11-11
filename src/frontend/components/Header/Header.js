@@ -10,7 +10,8 @@ import LoginForm from '../LoginForm/LoginForm'
 import {
     AccountCircle as AccountCircleIcon
 }from '@material-ui/icons'
-
+import api from '../../../backend/services/api'
+import FlagIcon from '../FlagIcon/FlagIcon'
 
 class Header extends React.Component {
 
@@ -20,13 +21,13 @@ class Header extends React.Component {
                 <header id="main_header" className="header_container">
 
                     <div className="navbar center_vertically">
-                        <ul>
-                            <li><NavLink to="/search" >Search</NavLink></li>
-                            <li><NavLink to="/submit" >Submit</NavLink></li>
-                            <li><NavLink to="/about" >About</NavLink></li>
-                            <li><NavLink to="/contact" >Contact</NavLink></li>
+                        <ul className="align_flex" >
+                            <li><NavLink to="/search" className="link_menu" >Search</NavLink></li>
+                            <li><NavLink to="/submit" className="link_menu">Submit</NavLink></li>
+                            <li><NavLink to="/about" className="link_menu">About</NavLink></li>
+                            <li><NavLink to="/contact" className="link_menu">Contact</NavLink></li>
                             {localStorage.getItem('user') ? <li onClick={()=>this.logout()}>Logout</li> : <li onClick={()=>this.handleClickOpen('loginFormOpen')}>Login</li>}
-                            {localStorage.getItem('user') ? <li><AccountCircleIcon className="user_profile_picture_header"/></li> : 
+                            {localStorage.getItem('user') ? <li className="user_profile_picture_header_container"><AccountCircleIcon className="user_profile_picture_header"/><FlagIcon code={this.state.user.countryCode} className="flag_header" /><span>{this.state.user.firstName}</span></li> : 
                                 <li onClick={()=>this.handleClickOpen('signUpFormOpen')}>
                                     <Button variant="contained" color="primary">
                                         Sign up
@@ -62,12 +63,18 @@ class Header extends React.Component {
             headerState : "closed",
             signUpFormOpen : false,
             loginFormOpen : false,
+            user : {}
         }
     }
 
     componentDidMount(){
         this.initHeaderOpen()
         this.initEventListeners()
+        this.checkIfNeedToDisplayUser()
+    }
+
+    componentDidUpdate(){
+        this.updateHeaderColorsOnUpdate()
     }
 
     initHeaderOpen(){
@@ -83,9 +90,23 @@ class Header extends React.Component {
         window.addEventListener("resize", ()=>{this.updateHeaderOnResize()});
     }
 
-    componentDidUpdate(){
-        this.updateHeaderColorsOnUpdate()
+
+    checkIfNeedToDisplayUser(){
+        if(localStorage.getItem('user')){
+            this.loadUserInfo()
+        }
     }
+
+    loadUserInfo = async() =>{
+        let userId = JSON.parse(localStorage.getItem('user'))
+        await api.getUserById(userId).then((response)=>{
+            this.setState({
+                ...this.state,
+                user : response.data
+            })
+        })
+    }
+
 
     chooseIconToDisplay(){
         let windowWidth = window.innerWidth
@@ -173,6 +194,7 @@ class Header extends React.Component {
     logout(){
         this.setState({...this.state})
         localStorage.clear()
+        window.location.reload()  
     }
 }
 export default withRouter(Header)

@@ -44,6 +44,7 @@ class Search extends React.Component{
             hotelId : hotelId,
             showDetails : true,
         })
+        window.scrollTo(0, 0)
     }
 
     updateResultList = (results)=>{

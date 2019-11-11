@@ -43,7 +43,7 @@ class MapResults extends React.Component{
         }
     }
 
-    onMarkerClick(props, marker){
+    onMarkerClick(props, marker, hotelId){
         //When we click on a marker we open the infoWindow
         this.setState({
             selectedPlace: props,
@@ -54,25 +54,27 @@ class MapResults extends React.Component{
             //When a setTimeOut is set to 0, we still delay the execution of the wrapped code because it puts the wrapped code into the api and the queue handled by the browser
             let linkDetails = document.getElementsByClassName('see_details')[0]
             linkDetails.addEventListener("click", ()=>{
-              this.props.showDetails()
+              this.props.showDetails(hotelId)
             });
           }, 0)
-    }
+    }   
 
 
     displayMarkers(resultsArray){
-        let markers = resultsArray.map(item => {
-            return (
-                <Marker
-                    key = {item._id}
-                    name={item.name}
-                    position={{lat: item.lat, lng: item.lng}}
-                    onClick={(props, marker, e)=>this.onMarkerClick(props, marker)} 
-                />
-            )
-        })
+        if(resultsArray){
+            let markers = resultsArray.map(item => {
+                return (
+                    <Marker
+                        key = {item._id}
+                        name={item.name}
+                        position={{lat: item.lat, lng: item.lng}}
+                        onClick={(props, marker, e)=>this.onMarkerClick(props, marker, item._id)} 
+                    />
+                )
+            })
+            return markers
+        }
 
-        return markers
     }
 
 }

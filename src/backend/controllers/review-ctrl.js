@@ -66,4 +66,17 @@ reviewRoutes.route('/review/:id').put(function(req, res) {
 });
 
 
+//delete review by Id
+reviewRoutes.route('/review/delete/:id').put(function(req, res) {
+    let id = req.params.id;
+    Review.deleteOne({ _id: id }, function(err) {
+        if (!err) {
+                res.json('Review successfully deleted')
+        }
+        else {
+            res.json('Error while trying to delete review')
+        }
+    });
+  });
+
 module.exports = reviewRoutes

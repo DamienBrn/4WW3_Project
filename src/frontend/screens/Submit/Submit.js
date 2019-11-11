@@ -9,12 +9,11 @@ export default class Submit extends React.PureComponent{
             <div className="safe_view full_view">
 
                 <h1>List your Property</h1>
-
-                <SubmitItem/>
+                    {localStorage.getItem('user') ? <SubmitItem/> : <div>Please login to submit your property</div>}
+                
             </div>
         )
     }
-
 
     componentDidMount(){
         window.scrollTo(0, 0)

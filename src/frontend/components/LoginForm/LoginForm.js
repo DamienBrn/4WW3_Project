@@ -13,8 +13,11 @@ import {
 } from '@material-ui/core'
 import { ArrowForward as ArrowForwardIcon,  Close as CloseIcon } from '@material-ui/icons'
 import api from '../../../backend/services/api'
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
-export default class LoginForm extends React.Component{
+
+class LoginForm extends React.Component{
 
     render(){
         return(
@@ -84,12 +87,16 @@ export default class LoginForm extends React.Component{
     }
 
 
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+      };
+
     constructor(props){
         super(props)
         this.state = {
             email : '',
             password : '',
-            checkboxValue : false
+            remindMe : false
         }
     }
 
@@ -97,7 +104,7 @@ export default class LoginForm extends React.Component{
     handleCheckBoxClick(){
         this.setState({
             ...this.state,
-            checkboxValue : !this.state.checkboxValue
+            remindMe : !this.state.remindMe
         })
     }
 
@@ -116,11 +123,27 @@ export default class LoginForm extends React.Component{
         const {email, password} = this.state
 
         await api.getUserByEmail(email).then((user)=>{
-            if(user.data == null || user.data.password !== password){
-                alert('get out you dirty hacker')
-            }else{
-                localStorage.setItem('user', JSON.stringify(user.data._id))
-                this.props.handleClose('loginFormOpen')            }
+            this.processLogin(user.data, password)
         })
       }
+
+
+      processLogin(userData, password){
+          console.log(this.props)
+        const { cookies } = this.props
+
+        if(userData == null || userData.password !== password){
+            alert('wrong info')
+        }else{
+            sessionStorage.setItem('user', userData._id)
+            cookies.set('test', 54)
+            //if(this.state.remindMe){
+                localStorage.setItem('user', JSON.stringify(userData._id))
+            //}
+            this.props.handleClose('loginFormOpen')
+            window.location.reload()            
+        }
+      }
 }   
+
+export default withCookies(LoginForm)

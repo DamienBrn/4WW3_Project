@@ -10,7 +10,8 @@ import {
     FormControl, 
     MenuItem, 
     FormControlLabel,
-    Checkbox
+    Checkbox,
+    TextareaAutosize
   } from '@material-ui/core'
   import { 
     RateReview as GeneralIcon,
@@ -23,10 +24,11 @@ import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import Rating from '@material-ui/lab/Rating';
 import MapInteractive from '../MapInteractive/MapInteractive'
 import api from '../../../backend/services/api'
+import {
+    withRouter
+  } from 'react-router-dom'
 
-
-export default class SubmitItem extends React.Component{
-
+class SubmitItem extends React.Component{
 
     render() {
         return (
@@ -48,13 +50,39 @@ export default class SubmitItem extends React.Component{
                                 onChange={(event)=>this.handleChange(event)}
                             />
 
+                            <TextField
+                                required
+                                name="avgPrice"
+                                id="average_price"
+                                label="Average price"
+                                className="spaced_element"
+                                margin="normal"
+                                variant="outlined"
+                                type="number"
+                                inputProps={{ min: "0"}} 
+                                onChange={(event)=>this.handleChange(event)}
+                            />
+
+                            <TextField
+                                required
+                                name="nbOfRooms"
+                                id="property_number_of_rooms"
+                                label="Number of rooms"
+                                className="spaced_element"
+                                margin="normal"
+                                variant="outlined"
+                                type="number"
+                                inputProps={{ min: "0"}} 
+                                onChange={(event)=>this.handleChange(event)}
+                            />
+
                             <FormControl variant="outlined" className="spaced_element star_picker">
                                 <InputLabel  htmlFor="stars">
                                     Number of stars
                                 </InputLabel>
                                 <Select
                                     required
-                                    labelWidth={500}
+                                    labelWidth={120}
                                     value={this.state.stars}
                                     onChange={(event)=>this.handleChange(event)}
                                     inputProps={{
@@ -333,38 +361,43 @@ export default class SubmitItem extends React.Component{
                                     label="Restaurant"
                                 />
                             </div>
-                            <TextField
-                                required
-                                name="nbOfRooms"
-                                id="property_number_of_rooms"
-                                label="Number of rooms"
-                                className="spaced_element"
-                                margin="normal"
-                                variant="outlined"
-                                type="number"
-                                inputProps={{ min: "0"}} 
-                                onChange={(event)=>this.handleChange(event)}
-                            />
                         </div>
                     </fieldset>
 
                     <fieldset>
                         <legend><PhotoLibraryIcon/>  Display your property</legend>
                         <div>
-                            <Button onClick={()=>this.handleOpen()}>
+                            <Button variant="contained" color="secondary" onClick={()=>this.handleOpen()}>
                                 Add file(s)
                             </Button>
                             <DropzoneDialog
                                 open={this.state.open}
-                                onSave={()=>this.handleSave()}
-                                acceptedFiles={['image/jpeg', 'image/png', 'image/bmp', 'video/*']}
+                                onSave={(files)=>this.handleSave(files)}
+                                acceptedFiles={['image/jpeg', 'image/png', 'video/*']}
                                 showPreviews={true}
-                                maxFileSize={25000000}
+                                maxFileSize={5000000}
                                 onClose={()=>this.handleClose()}
                                 dropzoneClass="dropzone_files"
                                 dropzoneText="Drag and drop a file or click here"
+                                filesLimit={1}
                             />
                         </div>
+                        <div className="selected_front_pic">
+                            <img id="selectedFrontPic" src="https://via.placeholder.com/400x300?text=Upload+your+image" alt="image_placeholder"/>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend><PhotoLibraryIcon/>  Describe your property</legend>
+                        <div>
+                        <TextareaAutosize
+                            name="description"
+                            className="hotel_description"
+                            placeholder="Your description"
+                            value={this.state.description}
+                            onChange={(event)=>this.handleChange(event)}
+                            />
+                        </div>
+
                     </fieldset>
 
 
@@ -376,7 +409,6 @@ export default class SubmitItem extends React.Component{
                       Continue
                       <ArrowForwardOutlinedIcon className="icon_right"/>
                     </Button>
-
 
                 </form>
 
@@ -390,6 +422,8 @@ export default class SubmitItem extends React.Component{
         this.state = {
             name : '',
             stars : 1,
+            avgPrice : 0,
+            avgRating : 50,
             contactName : '',
             email : '',
             phone : '',
@@ -414,7 +448,8 @@ export default class SubmitItem extends React.Component{
                 restaurant : false
             },
             nbOfRooms : '',
-            files: [],
+            files: {},
+            description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             errorState : {
                 email : false,
                 phone : false,
@@ -424,6 +459,7 @@ export default class SubmitItem extends React.Component{
             open: false,
         };
     }
+
 
     //Closes the window for dropping files
     handleClose() {
@@ -439,6 +475,21 @@ export default class SubmitItem extends React.Component{
             files: files, 
             open: false
         });
+        setTimeout(()=>{
+            this.readURL(this.state.files[0])
+        }, 0)
+    }
+
+    readURL(file) {
+        let selectedPicContainer = document.getElementById('selectedFrontPic')
+        if (file) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                selectedPicContainer.src = e.target.result
+            }
+            reader.readAsDataURL(file);
+        }
     }
 
     //Controls the window for dropping files
@@ -450,7 +501,6 @@ export default class SubmitItem extends React.Component{
 
     //General method to handle the changes to a service checkbox
     handleChangeServices(event){
-        console.log(this.state.services[event.target.name])
         this.setState({
             ...this.state,
             services : {
@@ -470,8 +520,7 @@ export default class SubmitItem extends React.Component{
 
     //We check the values for the inputs that needs a specific syntax for their values (only 3 in our case)
     handleInputChangeCheck(event){
-        let name = event.target.name
-        let value = event.target.value
+        let {name, value} = event.target
         let regex = /\S+@\S+\.\S+/; //we initiate the regex for the email (as the user will logically fill out inputs in the display order)
 
         //If the name of the event is "phone" or "altPhone" we set the regex for the phone numbers
@@ -501,18 +550,21 @@ export default class SubmitItem extends React.Component{
         }
     }
 
+
+
+
     handleSubmit = async(event)=>{
         event.preventDefault();
-        let nbErrorState = 0
+        let nbError = 0
         //We check if one of the input is in the error state
         for(let element in this.state.errorState){
             if(this.state.errorState[element]){
-                nbErrorState++
+                nbError++
             }
         }
 
-        //We one or more inputs or in the error state, we display an error message and prevent the user from submitting
-        if(nbErrorState > 0){
+        //If we have one or more inputs or in the error state, we display an error message and prevent the user from submitting
+        if(nbError > 0){
             this.displayErrorMessage()
         }else{
             this.setState({
@@ -520,15 +572,16 @@ export default class SubmitItem extends React.Component{
                 errorMessage : ''
             })
 
-            let {name, countryCode, city, address, address2, stars, zipCode, services} = this.state
-            const payload = {name, countryCode, city, address, address2, stars, zipCode, services}
-            await api.insertHotel(payload).then((hotel)=>{
+            let hotelDataFormated = this.formatDataForMongo()
+
+            await api.insertHotel(hotelDataFormated).then((hotel)=>{
+                this.redirectToSearchPage()
             })
+
         }
-        
       }
 
-
+      
       //We update the state to display an error message
       displayErrorMessage(){
         this.setState({
@@ -537,9 +590,45 @@ export default class SubmitItem extends React.Component{
         })
       }
 
+      formatDataForMongo(){
+        let {name, countryCode, city, address, address2, stars, zipCode, services, state, description, avgPrice, avgRating} = this.state
+        const payload = {
+            name, 
+            countryCode, 
+            city, 
+            address, 
+            address2,
+            state, 
+            lat : this.state.selectedPosition.lat,
+            lng : this.state.selectedPosition.lng,
+            stars, 
+            zipCode, 
+            services,
+            description,
+            avgPrice,
+            avgRating
+        }
+        
+        let formData = new FormData()
+
+        for (let property in payload) {
+            if (payload.hasOwnProperty(property)) {
+              formData.append(property, payload[property])
+            }
+          }
+
+        formData.append("frontPic", this.state.files[0])
+
+        return formData
+      }
+
+
+      redirectToSearchPage = () => {
+        this.props.history.push('/search')
+      }
 
       //When we click on the map, we get the location of the click and map component to update the position and the view
-      handleClickOnMap=(location, map)=>{
+      handleClickOnMap = (location, map)=>{
         this.setState({
             ...this.state,
             selectedPosition : {
@@ -563,3 +652,4 @@ export default class SubmitItem extends React.Component{
     }
 
 }
+export default withRouter(SubmitItem)

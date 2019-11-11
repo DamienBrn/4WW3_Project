@@ -5,7 +5,6 @@ import { Map,GoogleApiWrapper, Marker} from 'google-maps-react';
 
 class MapItem extends React.Component{
 
-
     render(){
         return (
                 <div className="near_location_hotels">

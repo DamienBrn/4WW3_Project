@@ -2,7 +2,6 @@ import React from 'react'
 import './HotelItemDetails.css'
 import UserReviewItem from '../../UserReviewItem/UserReviewItem'
 import Services from '../../Services/Services'
-import hotel_01 from '../../../../assets/images/hotel_01.jpg'
 import {
     Box, 
     Button, 
@@ -14,8 +13,7 @@ import MapSingleItem from '../MapSingleItem/MapSingleItem'
 import ReviewForm from '../../ReviewForm/ReviewForm'
 import api from '../../../../backend/services/api'
 import FlagIcon from '../../FlagIcon/FlagIcon'
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import CircularProgressbar from '../../CircularProgressBar/CircularProgressBar'
 
 
 
@@ -27,7 +25,7 @@ export default class HotelItemDetails extends React.Component{
             <div>
                 <div className="top_section_hotel_details">
                     <div className="hotel_detail_img_container">
-                        <img src={hotel_01} alt="hotel_detail_img with nice building and trees at night" className="hotel_detail_img"/>
+                        <img src={"http://localhost:4000/" + this.state.hotel.frontPic} alt="hotel_detail_img with nice building and trees at night" className="hotel_detail_img"/>
                     </div>
                     
                     <div className="details_top_right_hand_side">
@@ -52,14 +50,11 @@ export default class HotelItemDetails extends React.Component{
                             </div>
 
                             <div className="average_rating_container">
-                                <CircularProgressbar value={this.state.hotel.avgRating} text={`${this.state.hotel.avgRating}%`} background={true} className="avg_circle"
-                                    styles={buildStyles({
-                                    pathColor: this.changeColorBasedonPercentage(this.state.hotel.avgRating),
-                                    textColor: '#ffffff',
-                                    textSize : '35',
-                                    trailColor: '#d6d6d6',
-                                    backgroundColor: '#3e98c7',
-                                    })}
+                                <CircularProgressbar 
+                                value={this.state.hotel.avgRating} 
+                                text={`${this.state.hotel.avgRating}%`} 
+                                background={true} 
+                                className="avg_circle"
                                 />
                             </div>
 
@@ -95,13 +90,13 @@ export default class HotelItemDetails extends React.Component{
                     </div>
 
                     <div className="services">
-                        <h2>Services (sample)</h2>
+                        <h2>Services</h2>
                         {this.state.hotel.services ? <Services services={this.state.hotel.services} /> : null}
                         
                     </div>
 
                     <div className="user_reviews">
-                        <h2>User Reviews (sample)</h2>
+                        <h2>User Reviews</h2>
                         
                         {this.state.reviewsFormatted}
 
@@ -134,14 +129,8 @@ export default class HotelItemDetails extends React.Component{
     componentDidMount(){
         this.loadDetailsFromId()
         this.displayReviews()
-        setTimeout(()=>{
-            console.log(this.state.hotel)
-        }, 200)
     }
 
-    componentDidUpdate(){
-        console.log(JSON.parse(localStorage.getItem('user')))
-    }
 
     loadDetailsFromId = async()=>{
         await api.getHotelById(this.props.hotelId).then(hotel => {
@@ -153,10 +142,10 @@ export default class HotelItemDetails extends React.Component{
     }
 
     displayReviews = ()=>{
-        this.formatReviews().then((test)=>{
+        this.formatReviews().then((reviewsFormatted)=>{
             this.setState({
                 ...this.state,
-                reviewsFormatted : test
+                reviewsFormatted
             })
         })
     }
@@ -197,22 +186,4 @@ export default class HotelItemDetails extends React.Component{
             reviewFormOpen : false
         })
     }
-
-    //We update the color of the circle based on the percentage
-  changeColorBasedonPercentage(percentage){
-    let r, g, b = 0 //We set each channel to 0
-    let hue
-    if(percentage < 50) { //If the percentage is less than 50%, we set the red to max and update multiply the green channel by a color index, to create a "gradient" from red to orange/yellow
-      r = 255;
-      g = Math.round(5.1 * percentage)
-    }
-    else { // Same as above but we reverse the channels
-      g = 255;
-      r = Math.round(510 - 5.10 * percentage)
-    }
-    hue = r * 0x10000 + g * 0x100 + b * 0x1 // We calculate the hue by multiplying each channel by an hexadecimal index to specify the strongest colors in the gradients
-
-    //We convert the value of the hue an hexadecimal value the css can understand
-    return '#' + ('000000' + hue.toString(16)).slice(-6)
-  }
 }

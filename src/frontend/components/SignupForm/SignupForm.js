@@ -16,7 +16,7 @@ import {
 import { Close as CloseIcon, PersonAdd as SignupIcon} from '@material-ui/icons'
 import api from '../../../backend/services/api'
 import PasswordHelpPopover from './PasswordHelpPopover/PasswordHelpPopover'
-
+import berno_logo from '../../../assets/icons/Berno_logo_512x512.png'
 
 
 export default class SignupForm extends React.Component{
@@ -31,6 +31,8 @@ export default class SignupForm extends React.Component{
                     </IconButton>
 
                     <DialogContent>
+
+                        <img src={berno_logo} alt="berno_logo" className="berno_logo"/>
 
                         <DialogContentText className="text_align_center">
                             Sign up now, it's FREE !
@@ -199,7 +201,7 @@ export default class SignupForm extends React.Component{
 
     //We check if the password is correct (if it's not in the error state) and submit the form
     handleSubmit = async(event)=>{
-        if(this.state.errorState.password === false){
+        if(!this.state.errorState.password){
             const payload = {email : this.state.email, password : this.state.password}
             event.preventDefault();
             await api.insertUser(payload).then((user)=>{

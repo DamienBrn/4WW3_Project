@@ -19,11 +19,11 @@ export default class LandingSearchForm extends React.Component{
                     <LocationIcon className="location_icon" style={{ fontSize: 30 }}/>
 
                     <TextField
-                            id="landing_search_property"
-                            label="Destination / Property"
-                            margin="normal"
-                            className="small_search_input"
-                        />
+                        id="landing_search_property"
+                        label="Destination / Property"
+                        margin="normal"
+                        className="small_search_input"
+                    />
 
                     <Button title="Search" variant="contained" color="primary" className="spaced_element small_search_button">
                       <SearchIcon className="icon_left"/>

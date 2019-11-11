@@ -28,7 +28,6 @@ export default class SignupForm extends React.Component{
                     </IconButton>
 
                     <DialogContent>
-
                         <DialogContentText className="text_align_center">
                             Let us know what you think !
                         </DialogContentText>
@@ -51,7 +50,6 @@ export default class SignupForm extends React.Component{
                                     label="Multiline"
                                     multiline
                                     rows="10"
-                                    defaultValue="Default Value"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={(event)=>this.handleChange(event)}
@@ -94,7 +92,7 @@ export default class SignupForm extends React.Component{
     handleChange(event){
         this.setState({
             ...this.state,
-            [event.target.name]: event.target.value
+            [event.target.name] : event.target.name === 'rating' ? +event.target.value : event.target.value
         })
     }
 

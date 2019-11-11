@@ -17,7 +17,8 @@ const Schema = mongoose.Schema;
     description : String,
     services : Object,
     reviews : Object,
-    nbOfRooms : Number
+    nbOfRooms : Number,
+    frontPic: String
   },
   {collection : 'hotel'}
   );

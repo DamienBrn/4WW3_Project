@@ -9,30 +9,27 @@ import FeaturedCities from '../../components/landingPage/FeaturedCities/Featured
 import PopularHotels from '../../components/landingPage/PopularHotels/PopularHotels'
 import Mapitem from '../../components/landingPage/MapItem/MapItem'
 
-
 export default class LandingPage extends React.PureComponent {
 
     render() { 
         return (  
-
-        <div>
-            <div className="landing_top_section">
-                
-                <LandingBackground/>
-                <LandingSearchForm/>
-
-            </div>
-
             <div>
-                <FeaturedHotels/>
-                <FeaturedCities/>
-                <PopularHotels/>
+                <div className="landing_top_section">
+                    
+                    <LandingBackground/>
+                    <LandingSearchForm/>
+
+                </div>
+
+                <div>
+                    <FeaturedHotels/>
+                    <FeaturedCities/>
+                    <PopularHotels/>
+                </div>
+
+                <Mapitem/>
+
             </div>
-
-            <Mapitem/>
-
-        </div>
-
         )
     }
 

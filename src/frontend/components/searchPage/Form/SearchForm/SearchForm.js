@@ -8,10 +8,8 @@ import {
   InputLabel, 
   FormControl, 
   Typography, 
-  MenuItem, 
-  Slider
+  MenuItem 
 } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -20,6 +18,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import Rating from '@material-ui/lab/Rating';
+import {AirbnbSlider, AirbnbThumbComponent} from './AirbnbSlider'
 import api from '../../../../../backend/services/api'
 
 
@@ -89,7 +88,7 @@ export default class SearchForm extends React.Component{
                         </InputLabel>
                         <Select
                           value={this.state.numberOfAdults}
-                          onChange={(event)=>this.handleSelectChange(event)}
+                          onChange={(event)=>this.handleChange(event)}
                           labelWidth={50}
                           inputProps={{
                             name: 'numberOfAdults',
@@ -117,7 +116,7 @@ export default class SearchForm extends React.Component{
                           </InputLabel>
                           <Select
                             value={this.state.numberOfChildren}
-                            onChange={(event)=>this.handleSelectChange(event)}
+                            onChange={(event)=>this.handleChange(event)}
                             labelWidth={60}
                             inputProps={{
                               name: 'numberOfChildren',
@@ -146,7 +145,7 @@ export default class SearchForm extends React.Component{
                           </InputLabel>
                           <Select
                             value={this.state.numberOfRooms}
-                            onChange={(event)=>this.handleSelectChange(event)}
+                            onChange={(event)=>this.handleChange(event)}
                             labelWidth={50}
                             inputProps={{
                               name: 'numberOfRooms',
@@ -171,9 +170,9 @@ export default class SearchForm extends React.Component{
                         <Box component="fieldset" mb={3} borderColor="transparent" className="spaced_element">
                           <Typography component="legend">Stars</Typography>
                           <Rating
-                            name="number_stars"
+                            name="numberOfStars"
                             value={this.state.numberOfStars}
-                            onChange={(e, newValue) => this.handleStarsValueChange(newValue)}
+                            onChange={(event) => this.handleChange(event)}
                           />
                         </Box>
                       </div>
@@ -239,11 +238,19 @@ export default class SearchForm extends React.Component{
   }
 
     //General method to handle the changes to an input value
-    handleChange(event){
-      this.setState({
-          ...this.state,
-          [event.target.name]: event.target.value
-      })
+  handleChange(event){
+    this.setState({
+        ...this.state,
+        [event.target.name]: event.target.name === 'numberOfStars' ? parseInt(event.target.value, 10) : event.target.value
+    })
+  }
+
+  //We update the values of the slider 
+  handlePriceChange(newValue){
+    this.setState({
+      ...this.state,
+      priceRange : newValue
+    })
   }
 
   //We update the value of the date pickers
@@ -257,32 +264,10 @@ export default class SearchForm extends React.Component{
       })
   }
 
-  //We update the value of the "select" inputs
-  handleSelectChange(event){
-    this.setState({
-      ...this.state,
-      [event.target.name]: event.target.value
-    })
+  //We get the user's location when the corresponding button is pressed
+  searchNearbyHotels(){
+    this.getUserLocation()
   }
-
-
-  //We update the values of the number of stars selected
-  handleStarsValueChange(newValue){
-      this.setState({
-        ...this.state,
-        numberOfStars : newValue
-      })
-  }
-
-
-  //We update the values of the slider 
-  handlePriceChange(newValue){
-    this.setState({
-      ...this.state,
-      priceRange : newValue
-    })
-  }
-
 
 //We get the current posistion of the user
   getUserLocation() {
@@ -304,72 +289,21 @@ export default class SearchForm extends React.Component{
       })
   }
 
-  //We get the user's location when the corresponding button is pressed
-  searchNearbyHotels(){
-    this.getUserLocation()
-  }
 
   handleSubmit = async(event)=>{
     event.preventDefault();
+/*
+    const payload = {stars : this.state.numberOfStars, priceRange : this.state.priceRange}
+    await api.getHotelsPayload(payload).then((res)=>{
+      this.props.updateResultList(res.data)
+    })*/
+
     if(this.state.destinationProperty.length === 0){
       this.props.loadHotels()
     }else{
-      await api.getHotelByName(this.state.destinationProperty).then(hotels => {
-      this.props.updateResultList(hotels.data) 
+      await api.getHotelsByName(this.state.destinationProperty).then(hotels => {
+        this.props.updateResultList(hotels.data) 
       })
     }
   }
 }
-
-/*-----------------------Styles imported from @material-ui for the AirBnB Slider-------------------------------*/ 
-
-const AirbnbSlider = withStyles({
-  root: {
-    color: '#3a8589',
-    height: 3,
-    padding: '13px 0',
-  },
-  thumb: {
-    height: 27,
-    width: 27,
-    backgroundColor: '#fff',
-    border: '1px solid currentColor',
-    marginTop: -12,
-    marginLeft: -13,
-    boxShadow: '#ebebeb 0px 2px 2px',
-    '&:focus,&:hover,&$active': {
-      boxShadow: '#ccc 0px 2px 3px 1px',
-    },
-    '& .bar': {
-      height: 9,
-      width: 1,
-      backgroundColor: 'currentColor',
-      marginLeft: 1,
-      marginRight: 1,
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
-  },
-  track: {
-    height: 3,
-  },
-  rail: {
-    color: '#d8d8d8',
-    opacity: 1,
-    height: 3,
-  },
-})(Slider);
-
-function AirbnbThumbComponent(props) {
-  return (
-    <span {...props}>
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
-    </span>
-  );
-}
-
-

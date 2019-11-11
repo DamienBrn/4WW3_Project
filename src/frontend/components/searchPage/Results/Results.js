@@ -39,9 +39,7 @@ export default class Results extends React.Component{
                             }}
                             onChange={(event)=>this.handleChange(event)}
                         >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
+                            <MenuItem value=""><em>None</em></MenuItem>
                             <MenuItem value={'low'}>Low first</MenuItem>
                             <MenuItem value={'high'}>High first</MenuItem>
                         </Select>
@@ -58,9 +56,7 @@ export default class Results extends React.Component{
                             }}
                             onChange={(event)=>this.handleChange(event)}
                         >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
+                            <MenuItem value=""><em>None</em></MenuItem>
                             <MenuItem value={'low'}>Low first</MenuItem>
                             <MenuItem value={'high'}>High first</MenuItem>
                         </Select>
@@ -77,9 +73,7 @@ export default class Results extends React.Component{
                             }}
                             onChange={(event)=>this.handleChange(event)}
                         >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
+                            <MenuItem value=""><em>None</em></MenuItem>
                             <MenuItem value={'low'}>Low first</MenuItem>
                             <MenuItem value={'high'}>High first</MenuItem>
                         </Select>
@@ -97,11 +91,10 @@ export default class Results extends React.Component{
 
     constructor(props){
         super(props)
-
         this.state = {
             priceSort : '',
             ratingSort : '',
-            starsSort : '',
+            starsSort : ''
         }
     }
 
@@ -115,43 +108,68 @@ export default class Results extends React.Component{
     displayResults(resultsArray){
         let resultsFound = []
 
-        if(this.props.isLoading === true){
-            return <CircularProgress className="activity_indicator"/>
+        if(this.props.isLoading){
+            return this.displayActivityIndicator()
+
         }else if(resultsArray.length !== 0){
 
-            if(this.state.ratingSort !== ''){
-                resultsArray = this.sortByRating(resultsArray, this.state.ratingSort)
-            }
-            if(this.state.priceSort !== ''){
-                resultsArray = this.sortByPrice(resultsArray, this.state.priceSort)
-            }
+            resultsArray = this.sortBasedOnChosenCriteriaIfNeeded(resultsArray)
 
-            resultsFound = resultsArray.map(item => {
-                return (
-                    <div key={item._id} className="fit_content_width click_me" onClick={()=>this.props.showDetails(item._id)}>
-                        <HotelItem id={item._id} key={item._id} value={item.name} src={item.src} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
-                    </div>
-                )
-            })
+            resultsFound = this.displayHotelItems(resultsArray)
         }
         
         if(resultsFound.length === 0){
-            resultsFound = (
-                <div className="no_results_message">
-                    <DomainDisabledIcon fontSize="large" color="primary" />
-                    <div><h3>No results found for this search<br/>Try with another name</h3></div>
-                </div>
-            )
+            resultsFound = this.displayNoResultsMessage()
         }   
+
         return resultsFound
     }
 
 
-/* --------------------------- Sort functions --------------------------- */
 
-    sortByRating(resultsArray, order){
-        return resultsArray.sort(this['compareRatings' + order[0].toUpperCase() + order.slice(1, order.length ) + 'First'])
+    displayActivityIndicator(){
+        return <CircularProgress className="activity_indicator"/>
     }
+
+    sortBasedOnChosenCriteriaIfNeeded(resultsArray){
+        if(this.state.priceSort !== ''){
+            resultsArray = this.sortResults('Prices', this.state.priceSort, resultsArray)
+        }
+        if(this.state.ratingSort !== ''){
+            resultsArray = this.sortResults('Ratings', this.state.ratingSort, resultsArray)
+        }
+        if(this.state.starsSort !== ''){
+            resultsArray = this.sortResults('Stars', this.state.starsSort, resultsArray)
+        }
+
+        return resultsArray
+    }
+
+
+    displayHotelItems(resultsArray){
+        return resultsArray.map(item => {
+            return (
+                <div key={item._id} className="fit_content_width click_me" onClick={()=>this.props.showDetails(item._id)}>
+                    <HotelItem id={item._id} key={item._id} value={item.name} src={"http://localhost:4000/" + item.frontPic} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
+                </div>
+            )
+        })
+    }
+
+    displayNoResultsMessage(){
+        return(
+            <div className="no_results_message">
+                <DomainDisabledIcon fontSize="large" color="primary" />
+                <div><h3>No results found for this search<br/>Try with another name</h3></div>
+            </div>
+        )
+    }
+
+
+    sortResults(element, order, resultsArray){
+        return resultsArray.sort(this['compare'+ element + order[0].toUpperCase() + order.slice(1, order.length ) + 'First'])
+    }
+
 
     compareRatingsLowFirst(h1, h2) {
         return h1.avgRating - h2.avgRating
@@ -163,9 +181,6 @@ export default class Results extends React.Component{
 
     //-------------SORT BY PRICE------------------------
 
-    sortByPrice(resultsArray, order){
-        return resultsArray.sort(this['comparePrices' + order[0].toUpperCase() + order.slice(1, order.length ) + 'First'])
-    }
 
     comparePricesLowFirst(h1, h2) {
         return h1.avgPrice - h2.avgPrice
@@ -173,6 +188,16 @@ export default class Results extends React.Component{
     
     comparePricesHighFirst(h1, h2) {
         return h2.avgPrice - h1.avgPrice
+    }
+
+    //-------------SORT BY STARS------------------------
+
+    compareStarsLowFirst(h1, h2) {
+        return h1.stars - h2.stars
+    }
+    
+    compareStarsHighFirst(h1, h2) {
+        return h2.stars - h1.stars
     }
       
 

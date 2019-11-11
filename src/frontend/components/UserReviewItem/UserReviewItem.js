@@ -36,11 +36,12 @@ export default class UserReviewItem extends React.Component{
                         <div className="user_review_rating">
                             <Box component="fieldset" mb={3} borderColor="transparent">
                                 <Rating
-                                name="customized-color"
-                                className="heart_icon"
-                                value={this.props.rating}
-                                icon={<FavoriteIcon fontSize="inherit"/>}
-                                readOnly
+                                    name="customized-color"
+                                    className="heart_icon"
+                                    value={this.props.rating}
+                                    precision={0.5}
+                                    icon={<FavoriteIcon fontSize="inherit"/>}
+                                    readOnly
                                 />
                             </Box>
                         </div>
@@ -72,7 +73,6 @@ export default class UserReviewItem extends React.Component{
     }
 
     loadUserInfoForThumbnail = async()=>{
-        
         let userId
 
         await api.getReviewById(this.props.reviewId).then((review)=>{

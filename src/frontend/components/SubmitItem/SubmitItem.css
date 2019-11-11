@@ -37,3 +37,25 @@
     height: 300px;
     width: auto;
 }
+
+.selected_front_pic{
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%);
+    height: 300px;
+    width: 400px;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#selectedFrontPic{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.hotel_description{
+    height: 300px !important;
+    width: 500px;
+}

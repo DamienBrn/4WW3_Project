@@ -18,36 +18,34 @@ import './frontend/utils/styles/thumbnails.css'
 
 //react-router -> librairy for routing
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-
+import { CookiesProvider } from 'react-cookie';
 
 function App() {
   return (
     <div className="App">
-      
-      <BrowserRouter>
-      
-        <div>
-          <Header/>
-          
-            <Switch>
-              <Route path="/" component={LandingPage} exact/>
-              <Route path="/search" component={Search}/>
-              <Route path="/submit" component={Submit}/>
-              <Route path="/about" component={About}/>
-              <Route path="/contact" component={Contact}/>
-              <Route component={Error}/>
-            </Switch>
-          
-          <Footer/>
-        </div>
 
-      </BrowserRouter>  
+      <CookiesProvider>
+        <BrowserRouter>
+        
+          <div>
+            <Header/>
+            
+              <Switch>
+                <Route path="/" component={LandingPage} exact/>
+                <Route path="/search" component={Search}/>
+                <Route path="/submit" component={Submit}/>
+                <Route path="/about" component={About}/>
+                <Route path="/contact" component={Contact}/>
+                <Route component={Error}/>
+              </Switch>
+            
+            <Footer/>
+          </div>
+
+        </BrowserRouter>
+      </CookiesProvider>  
 
     </div>
   );
 }
-
-export default App;
-
-//Do I really have to comment everything ? comon... you can see I know what I'm doing.
-//2030
+export default App
