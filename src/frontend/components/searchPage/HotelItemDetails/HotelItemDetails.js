@@ -20,12 +20,13 @@ import CircularProgressbar from '../../CircularProgressBar/CircularProgressBar'
 export default class HotelItemDetails extends React.Component{
 
     render(){
+        const baseUrl = "http://localhost:4000/"
 
         return(
             <div>
                 <div className="top_section_hotel_details">
                     <div className="hotel_detail_img_container">
-                        <img src={"http://localhost:4000/" + this.state.hotel.frontPic} alt="hotel_detail_img with nice building and trees at night" className="hotel_detail_img"/>
+                        <img src={baseUrl + this.state.hotel.frontPic} alt="hotel_detail_img with nice building and trees at night" className="hotel_detail_img"/>
                     </div>
                     
                     <div className="details_top_right_hand_side">

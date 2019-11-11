@@ -147,10 +147,12 @@ export default class Results extends React.Component{
 
 
     displayHotelItems(resultsArray){
+        const baseUrl = "http://localhost:4000/"
+
         return resultsArray.map(item => {
             return (
                 <div key={item._id} className="fit_content_width click_me" onClick={()=>this.props.showDetails(item._id)}>
-                    <HotelItem id={item._id} key={item._id} value={item.name} src={"http://localhost:4000/" + item.frontPic} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
+                    <HotelItem id={item._id} key={item._id} value={item.name} src={baseUrl + item.frontPic} hotelName={item.name} countryCode={item.countryCode} cityName={item.city} rating={item.avgRating} price={item.avgPrice} stars={item.stars} />
                 </div>
             )
         })

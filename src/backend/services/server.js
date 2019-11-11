@@ -12,13 +12,12 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = 4000;
 const url = 'mongodb://localhost:27017/mcmaster'
-
+const path = require("path");
 
 app.use('/uploads', express.static('uploads'))
 app.use(cors());
 app.use(bodyParser.json());
 mongoose.connect(url, { useNewUrlParser: true })
-
 
 
 //-----------------Connect to DB--------------------------------------
@@ -38,3 +37,9 @@ app.listen(PORT, function() {
 app.use('/api', hotelRoutes)
 app.use('/api', userRoutes)
 app.use('/api', reviewRoutes)
+
+
+app.use(express.static("project_1/build"));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "project_1", "build", "index.html"));
+});
