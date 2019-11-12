@@ -1,6 +1,7 @@
 import React from 'react'
 import './MapItem.css'
 import { Map,GoogleApiWrapper, Marker} from 'google-maps-react';
+import {GOOGLE_MAP_API_KEY} from '../../../utils/constants/constants'
 
 
 class MapItem extends React.Component{
@@ -69,5 +70,5 @@ class MapItem extends React.Component{
 
 //We specify our Api key and wrap it around our component
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBzIYx2VVzDdL7GWsKkYupI6QDs1GB3WGA'
+    apiKey: GOOGLE_MAP_API_KEY
   })(MapItem);

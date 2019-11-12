@@ -1,6 +1,7 @@
 import React from 'react'
 import './MapResults.css'
 import { Map,GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import {GOOGLE_MAP_API_KEY} from '../../../utils/constants/constants'
 
 class MapResults extends React.Component{
     render(){
@@ -42,7 +43,6 @@ class MapResults extends React.Component{
             selectedPlace: {},
         }
     }
-
     onMarkerClick(props, marker, hotelId){
         //When we click on a marker we open the infoWindow
         this.setState({
@@ -81,5 +81,5 @@ class MapResults extends React.Component{
 
 //We specify our Api key and we wrap it around our component
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBzIYx2VVzDdL7GWsKkYupI6QDs1GB3WGA'
+    apiKey: GOOGLE_MAP_API_KEY
   })(MapResults);

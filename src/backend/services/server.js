@@ -32,7 +32,6 @@ app.listen(PORT, function() {
 });
 
 
-
 /*--ROUTES SETUP-*/
 app.use('/api', hotelRoutes)
 app.use('/api', userRoutes)
