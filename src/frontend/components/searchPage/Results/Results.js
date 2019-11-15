@@ -147,7 +147,7 @@ export default class Results extends React.Component{
 
 
     displayHotelItems(resultsArray){
-        const baseUrl = "http://localhost:4000/"
+        const baseUrl = "http://" + window.location.hostname + ":4000/"
 
         return resultsArray.map(item => {
             return (

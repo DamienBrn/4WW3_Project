@@ -20,7 +20,7 @@ import CircularProgressbar from '../../CircularProgressBar/CircularProgressBar'
 export default class HotelItemDetails extends React.Component{
 
     render(){
-        const baseUrl = "http://localhost:4000/"
+        const baseUrl = "http://" + window.location.hostname + ":4000/"
 
         return(
             <div>

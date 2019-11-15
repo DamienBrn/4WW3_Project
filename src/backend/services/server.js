@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-
+const os = require('os')
 //-----------------Import route controllers------------------------------
 const hotelRoutes = require('../controllers/hotels-ctrl')
 const userRoutes = require ('../controllers/user-ctrl')
@@ -11,7 +11,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = 4000;
-const url = 'mongodb://localhost:27017/mcmaster'
+const host = window.location.hostname
+const url = 'mongodb://' + host + ':27017/mcmaster'
 const path = require("path");
 
 app.use('/uploads', express.static('uploads'))

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //create const with axios that will use the baseURL to send request
 const api = axios.create({
-    baseURL: 'http://localhost:4000/api',
+    baseURL: 'http://' + window.location.hostname + ':4000/api',
 })
 
 //----------------------------CRUD for hotels-------------------------------------
